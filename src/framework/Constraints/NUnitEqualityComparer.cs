@@ -120,6 +120,11 @@ namespace NUnit.Framework.Constraints
         /// </summary>
         public bool AreEqual(object x, object y, ref Tolerance tolerance)
         {
+            return AreEqual(x, y, new EnumerableRecursionHelper(), ref tolerance);
+        }
+
+        private bool AreEqual(object x, object y, EnumerableRecursionHelper recursionHelper, ref Tolerance tolerance)
+        {
             this.failurePoints = new List<FailurePoint>();
 
             if (x == null && y == null)
@@ -139,10 +144,10 @@ namespace NUnit.Framework.Constraints
                 return externalComparer.AreEqual(x, y);
 
             if (xType.IsArray && yType.IsArray && !compareAsCollection)
-                return ArraysEqual((Array)x, (Array)y, ref tolerance);
+                return ArraysEqual((Array)x, (Array)y, recursionHelper, ref tolerance);
 
             if (x is IDictionary && y is IDictionary)
-                return DictionariesEqual((IDictionary)x, (IDictionary)y, ref tolerance);
+                return DictionariesEqual((IDictionary)x, (IDictionary)y, recursionHelper, ref tolerance);
             
             // Issue #70 - EquivalentTo isn't compatible with IgnoreCase for dictionaries
             if (x is DictionaryEntry && y is DictionaryEntry)
@@ -161,11 +166,8 @@ namespace NUnit.Framework.Constraints
                 return AreEqual(xKey, yKey, ref keyTolerance) && AreEqual(xValue, yValue, ref tolerance);
             }
 
-            //if (x is ICollection && y is ICollection)
-            //    return CollectionsEqual((ICollection)x, (ICollection)y, ref tolerance);
-
             if (x is IEnumerable && y is IEnumerable && !(x is string && y is string))
-                return EnumerablesEqual((IEnumerable)x, (IEnumerable)y, ref tolerance);
+                return EnumerablesEqual((IEnumerable)x, (IEnumerable)y, recursionHelper, ref tolerance);
 
             if (x is string && y is string)
                 return StringsEqual((string)x, (string)y);
@@ -255,7 +257,7 @@ namespace NUnit.Framework.Constraints
         /// <summary>
         /// Helper method to compare two arrays
         /// </summary>
-        private bool ArraysEqual(Array x, Array y, ref Tolerance tolerance)
+        private bool ArraysEqual(Array x, Array y, EnumerableRecursionHelper recursionHelper, ref Tolerance tolerance)
         {
             int rank = x.Rank;
 
@@ -266,10 +268,10 @@ namespace NUnit.Framework.Constraints
                 if (x.GetLength(r) != y.GetLength(r))
                     return false;
 
-            return EnumerablesEqual((IEnumerable)x, (IEnumerable)y, ref tolerance);
+            return EnumerablesEqual((IEnumerable)x, (IEnumerable)y, recursionHelper, ref tolerance);
         }
 
-        private bool DictionariesEqual(IDictionary x, IDictionary y, ref Tolerance tolerance)
+        private bool DictionariesEqual(IDictionary x, IDictionary y, EnumerableRecursionHelper recursionHelper, ref Tolerance tolerance)
         {
             if (x.Count != y.Count)
                 return false;
@@ -279,7 +281,7 @@ namespace NUnit.Framework.Constraints
                 return false;
 
             foreach (object key in x.Keys)
-                if (!AreEqual(x[key], y[key], ref tolerance))
+                if (!AreEqual(x[key], y[key], recursionHelper, ref tolerance))
                     return false;
  
             return true;
@@ -289,37 +291,6 @@ namespace NUnit.Framework.Constraints
         {
             var keyTolerance = Tolerance.Exact;
             return AreEqual(x.Key, y.Key, ref keyTolerance) && AreEqual(x.Value, y.Value, ref tolerance);
-        }
-
-        private bool CollectionsEqual(ICollection x, ICollection y, ref Tolerance tolerance)
-        {
-            IEnumerator expectedEnum = x.GetEnumerator();
-            IEnumerator actualEnum = y.GetEnumerator();
-
-            int count;
-            for (count = 0; ; count++)
-            {
-                bool expectedHasData = expectedEnum.MoveNext();
-                bool actualHasData = actualEnum.MoveNext();
-
-                if (!expectedHasData && !actualHasData)
-                    return true;
-
-                if (expectedHasData != actualHasData ||
-                    !AreEqual(expectedEnum.Current, actualEnum.Current, ref tolerance))
-                {
-                    FailurePoint fp = new FailurePoint();
-                    fp.Position = count;
-                    fp.ExpectedHasData = expectedHasData;
-                    if (expectedHasData)
-                        fp.ExpectedValue = expectedEnum.Current;
-                    fp.ActualHasData = actualHasData;
-                    if (actualHasData)
-                        fp.ActualValue = actualEnum.Current;
-                    failurePoints.Insert(0, fp);
-                    return false;
-                }
-            }
         }
 
         private bool StringsEqual(string x, string y)
@@ -338,10 +309,13 @@ namespace NUnit.Framework.Constraints
             return c1 == c2;
         }
 
-        private bool EnumerablesEqual(IEnumerable x, IEnumerable y, ref Tolerance tolerance)
+        private bool EnumerablesEqual(IEnumerable expected, IEnumerable actual, EnumerableRecursionHelper recursionHelper, ref Tolerance tolerance)
         {
-            IEnumerator expectedEnum = x.GetEnumerator();
-            IEnumerator actualEnum = y.GetEnumerator();
+            if (recursionHelper.CheckRecursion(expected, actual))
+                return false;
+
+            IEnumerator expectedEnum = expected.GetEnumerator();
+            IEnumerator actualEnum = actual.GetEnumerator();
 
             int count;
             for (count = 0; ; count++)
@@ -353,7 +327,7 @@ namespace NUnit.Framework.Constraints
                     return true;
 
                 if (expectedHasData != actualHasData ||
-                    !AreEqual(expectedEnum.Current, actualEnum.Current, ref tolerance))
+                    !AreEqual(expectedEnum.Current, actualEnum.Current, recursionHelper, ref tolerance))
                 {
                     FailurePoint fp = new FailurePoint();
                     fp.Position = count;
@@ -484,6 +458,56 @@ namespace NUnit.Framework.Constraints
             public bool ActualHasData;
         }
 
+        #endregion
+
+        #region Nested EnumerableRecursionHelper class
+        class EnumerableRecursionHelper
+        {
+            readonly Hashtable table = new Hashtable();
+
+            public bool CheckRecursion(IEnumerable expected, IEnumerable actual)
+            {
+                var key = new UnorderedReferencePair(expected, actual);
+
+                if (table.Contains(key))
+                    return true;
+
+                table.Add(key, null);
+                return false;
+            }
+
+            class UnorderedReferencePair : IEquatable<UnorderedReferencePair>
+            {
+                private readonly object first;
+                private readonly object second;
+
+                public UnorderedReferencePair(object first, object second)
+                {
+                    this.first = first;
+                    this.second = second;
+                }
+
+                public bool Equals(UnorderedReferencePair other)
+                {
+                    return (Equals(first, other.first) && Equals(second, other.second)) ||
+                           (Equals(first, other.second) && Equals(second, other.first));
+                }
+
+                public override bool Equals(object obj)
+                {
+                    if (ReferenceEquals(null, obj)) return false;
+                    return obj is UnorderedReferencePair && Equals((UnorderedReferencePair)obj);
+                }
+
+                public override int GetHashCode()
+                {
+                    unchecked
+                    {
+                        return ((first != null ? first.GetHashCode() : 0) * 397) ^ ((second != null ? second.GetHashCode() : 0) * 397);
+                    }
+                }
+            }
+        }
         #endregion
     }
 }

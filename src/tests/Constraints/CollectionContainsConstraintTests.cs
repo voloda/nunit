@@ -100,5 +100,22 @@ namespace NUnit.Framework.Constraints
             Assert.That(new string[] { "Hello", "World" },
                 new CollectionContainsConstraint("WORLD").Using<string>((x, y) => StringUtil.Compare(x, y, true)));
         }
+
+        [Test]
+        public void ContainsWithRecursiveStructure()
+        {
+            SelfRecursiveEnumerable item = new SelfRecursiveEnumerable();
+            SelfRecursiveEnumerable[] container = new SelfRecursiveEnumerable[] {new SelfRecursiveEnumerable(), item};
+
+            Assert.That(container, new CollectionContainsConstraint(item));
+        }
+
+        class SelfRecursiveEnumerable : IEnumerable
+        {
+            public IEnumerator GetEnumerator()
+            {
+                yield return this;
+            }
+        }
     }
 }
