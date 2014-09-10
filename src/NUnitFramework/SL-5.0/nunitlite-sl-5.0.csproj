@@ -68,19 +68,17 @@
     <Compile Include="..\FrameworkVersion.cs">
       <Link>FrameworkVersion.cs</Link>
     </Compile>
-    <Compile Include="..\framework\Runner\Silverlight\TestPage.xaml.cs">
-      <Link>Runner\Silverlight\TestPage.xaml.cs</Link>
+    <Compile Include="Runner\Silverlight\TestPage.xaml.cs">
+      <DependentUpon>TestPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="..\framework\Runner\Silverlight\TextBlockWriter.cs">
-      <Link>Runner\Silverlight\TextBlockWriter.cs</Link>
+    <Compile Include="Runner\Silverlight\TextBlockWriter.cs">
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="..\framework\Runner\Silverlight\TestPage.xaml">
-      <Link>Runner\Silverlight\TestPage.xaml</Link>
+    <Page Include="Runner\Silverlight\TestPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

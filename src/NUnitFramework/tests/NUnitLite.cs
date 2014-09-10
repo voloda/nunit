@@ -21,6 +21,7 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // ***********************************************************************
 
+#if NUNITLITE && !SILVERLIGHT
 using System;
 using NUnitLite.Runner;
 
@@ -68,3 +69,4 @@ namespace NUnitLite.Tests
         }
     }
 }
+#endif
