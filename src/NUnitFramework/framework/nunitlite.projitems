@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>096C487D-815F-4722-8764-F346E8C20EBA</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>NUnit.Framework</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Runner\CommandLineOptions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Runner\DebugWriter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Runner\OutputManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Runner\OutputSpecification.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Runner\OutputWriters\NUnit2XmlOutputWriter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Runner\OutputWriters\NUnit3XmlOutputWriter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Runner\OutputWriters\OutputWriter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Runner\OutputWriters\TestCaseOutputWriter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Runner\ResultReporter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Runner\ResultSummary.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Runner\TcpWriter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Runner\TeamCityEventListener.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Runner\TestNameParser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Runner\TextUI.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Runner\Silverlight\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)nunitlite.build" />
+  </ItemGroup>
+</Project>

@@ -5,12 +5,12 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{A76794DA-29A4-4D63-9850-E0E363A2FAFD}</ProjectGuid>
+    <ProjectGuid>{3DEB15F9-E7DA-403F-B6D3-A8499310397F}</ProjectGuid>
     <ProjectTypeGuids>{A1591282-1198-4647-A2B1-27E5FF5F6F3B};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NUnit.TestData</RootNamespace>
-    <AssemblyName>nunitlite.testdata</AssemblyName>
+    <RootNamespace>NUnit</RootNamespace>
+    <AssemblyName>nunitlite</AssemblyName>
     <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
@@ -29,34 +29,37 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>..\..\..\bin\Debug\sl-5.0\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;SILVERLIGHT;SL_5_0</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;SILVERLIGHT;SL_5_0;NUNITLITE</DefineConstants>
     <NoStdLib>true</NoStdLib>
     <NoConfig>true</NoConfig>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\..\..\bin\Debug\sl-5.0\nunitlite.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
+    <DebugType>full</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>..\..\..\bin\Release\sl-5.0\</OutputPath>
-    <DefineConstants>TRACE;SILVERLIGHT;SL_5_0</DefineConstants>
+    <DefineConstants>TRACE;SILVERLIGHT;SL_5_0;NUNITLITE</DefineConstants>
     <NoStdLib>true</NoStdLib>
     <NoConfig>true</NoConfig>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DebugSymbols>true</DebugSymbols>
+    <DocumentationFile>..\..\..\bin\Release\sl-5.0\nunitlite.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
+    <Reference Include="System.Windows" />
     <Reference Include="system" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SL-5.0\nunitlite-sl-5.0.csproj">
-      <Project>{3deb15f9-e7da-403f-b6d3-a8499310397f}</Project>
-      <Name>nunitlite-sl-5.0</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Properties\" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\CommonAssemblyInfo.cs">
@@ -65,35 +68,25 @@
     <Compile Include="..\FrameworkVersion.cs">
       <Link>FrameworkVersion.cs</Link>
     </Compile>
-    <Compile Include="AssertCountFixture.cs" />
-    <Compile Include="AssertFailFixture.cs" />
-    <Compile Include="AssertIgnoreData.cs" />
-    <Compile Include="AttributeInheritanceData.cs" />
-    <Compile Include="CategoryAttributeData.cs" />
-    <Compile Include="CultureAttributeData.cs" />
-    <Compile Include="DatapointFixture.cs" />
-    <Compile Include="DescriptionFixture.cs" />
-    <Compile Include="MaxTimeFixture.cs" />
-    <Compile Include="OneTimeSetUpTearDownData.cs" />
-    <Compile Include="ParameterizedTestFixture.cs" />
-    <Compile Include="PropertyAttributeTests.cs" />
-    <Compile Include="RepeatedTestFixture.cs" />
-    <Compile Include="SetUpData.cs" />
-    <Compile Include="SetUpFixtureData.cs" />
-    <Compile Include="TestCaseAttributeFixture.cs" />
-    <Compile Include="TestCaseSourceAttributeFixture.cs" />
-    <Compile Include="TestContextData.cs" />
-    <Compile Include="TestFixtureData.cs" />
-    <Compile Include="TestMethodSignatureFixture.cs" />
-    <Compile Include="TheoryFixture.cs" />
-    <Compile Include="TimeoutFixture.cs" />
+    <Compile Include="..\framework\Runner\Silverlight\TestPage.xaml.cs">
+      <Link>Runner\Silverlight\TestPage.xaml.cs</Link>
+    </Compile>
+    <Compile Include="..\framework\Runner\Silverlight\TextBlockWriter.cs">
+      <Link>Runner\Silverlight\TextBlockWriter.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="nunitlite.testdata.build" />
+    <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+    <Page Include="..\framework\Runner\Silverlight\TestPage.xaml">
+      <Link>Runner\Silverlight\TestPage.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
+  <Import Project="..\framework\nunitlite.projitems" Label="Shared" Condition="Exists('..\framework\nunitlite.projitems')" />
+  <Import Project="..\framework\nunit.framework.projitems" Label="Shared" Condition="Exists('..\framework\nunit.framework.projitems')" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

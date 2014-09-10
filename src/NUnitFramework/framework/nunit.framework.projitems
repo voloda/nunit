@@ -314,6 +314,5 @@
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)nunit.framework.build" />
     <None Include="$(MSBuildThisFileDirectory)nunit.snk" />
-    <None Include="$(MSBuildThisFileDirectory)nunitlite.build" />
   </ItemGroup>
 </Project>

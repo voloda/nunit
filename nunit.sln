@@ -18,7 +18,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NUnitConsole", "NUnitConsol
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NET-2.0", "NET-2.0", "{64FE69B2-CE0B-4A47-83A3-9DE803851447}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nunitlite-2.0", "src\NUnitFramework\framework\nunitlite-2.0.csproj", "{0BFA7F0A-BC15-40A5-863A-FA9B55AE2FD3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nunitlite-2.0", "src\NUnitFramework\NET-2.0\nunitlite-2.0.csproj", "{0BFA7F0A-BC15-40A5-863A-FA9B55AE2FD3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mock-nunit-assembly-2.0", "src\NUnitFramework\mock-assembly\mock-nunit-assembly-2.0.csproj", "{2E368281-3BA8-4050-B05E-0E0E43F8F446}"
 EndProject
@@ -56,7 +56,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NET-4.0", "NET-4.0", "{8315
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NET-4.5", "NET-4.5", "{7B573D52-181D-482F-A61C-82E543B3E958}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nunitlite-3.5", "src\NUnitFramework\framework\nunitlite-3.5.csproj", "{8C09BB92-C5F6-496C-BEE7-BB16677823D6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nunitlite-3.5", "src\NUnitFramework\NET-3.5\nunitlite-3.5.csproj", "{8C09BB92-C5F6-496C-BEE7-BB16677823D6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mock-nunit-assembly-3.5", "src\NUnitFramework\mock-assembly\mock-nunit-assembly-3.5.csproj", "{7C36E4B4-16A7-450B-9919-BA35825F46B6}"
 EndProject
@@ -76,7 +76,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nunitlite.tests-3.5", "src\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test-harness-3.5", "src\NUnitFramework\harness\test-harness-3.5.csproj", "{C5038911-F8C3-4B55-8B07-2F52C969176D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nunitlite-4.0", "src\NUnitFramework\framework\nunitlite-4.0.csproj", "{73A8B041-E719-443D-BF32-7944F117996C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nunitlite-4.0", "src\NUnitFramework\NET-4.0\nunitlite-4.0.csproj", "{73A8B041-E719-443D-BF32-7944F117996C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mock-nunit-assembly-4.0", "src\NUnitFramework\mock-assembly\mock-nunit-assembly-4.0.csproj", "{DDCE1AE3-AA0D-4E2D-AD1B-8CA322AFA7DD}"
 EndProject
@@ -96,7 +96,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nunitlite.tests-4.0", "src\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test-harness-4.0", "src\NUnitFramework\harness\test-harness-4.0.csproj", "{D69735DE-4846-4239-B552-A423A8E8CE71}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nunitlite-4.5", "src\NUnitFramework\framework\nunitlite-4.5.csproj", "{22857A11-108D-48C6-9A23-2217D2F2C365}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nunitlite-4.5", "src\NUnitFramework\NET-4.5\nunitlite-4.5.csproj", "{22857A11-108D-48C6-9A23-2217D2F2C365}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mock-nunit-assembly-4.5", "src\NUnitFramework\mock-assembly\mock-nunit-assembly-4.5.csproj", "{C3264FF3-E2D7-48D7-93A7-CDC9A827AD9D}"
 EndProject
@@ -118,7 +118,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test-harness-4.5", "src\NUn
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SL-5.0", "SL-5.0", "{A21BFC37-44FC-41A0-B6E7-6F949F45A635}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nunitlite-sl-5.0", "src\NUnitFramework\framework\nunitlite-sl-5.0.csproj", "{3DEB15F9-E7DA-403F-B6D3-A8499310397F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nunitlite-sl-5.0", "src\NUnitFramework\SL-5.0\nunitlite-sl-5.0.csproj", "{3DEB15F9-E7DA-403F-B6D3-A8499310397F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nunitlite.testdata-sl-5.0", "src\NUnitFramework\testdata\nunitlite.testdata-sl-5.0.csproj", "{A76794DA-29A4-4D63-9850-E0E363A2FAFD}"
 EndProject
@@ -136,13 +136,26 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nunit.framework-3.5", "src\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nunit.framework-4.0", "src\NUnitFramework\NET-4.0\nunit.framework-4.0.csproj", "{6A281C98-B74D-403B-8536-966871B992E3}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "nunitlite", "src\NUnitFramework\framework\nunitlite.shproj", "{096C487D-815F-4722-8764-F346E8C20EBA}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		src\NUnitFramework\framework\nunit.framework.projitems*{ee7e1d47-c686-496a-81f2-b05f085bc21f}*SharedItemsImports = 4
+		src\NUnitFramework\framework\nunitlite.projitems*{73a8b041-e719-443d-bf32-7944f117996c}*SharedItemsImports = 4
+		src\NUnitFramework\framework\nunit.framework.projitems*{73a8b041-e719-443d-bf32-7944f117996c}*SharedItemsImports = 4
+		src\NUnitFramework\framework\nunitlite.projitems*{8c09bb92-c5f6-496c-bee7-bb16677823d6}*SharedItemsImports = 4
+		src\NUnitFramework\framework\nunit.framework.projitems*{8c09bb92-c5f6-496c-bee7-bb16677823d6}*SharedItemsImports = 4
 		src\NUnitFramework\framework\nunit.framework.projitems*{0771e1cf-40a4-444e-aa94-47573f409cfd}*SharedItemsImports = 13
+		src\NUnitFramework\framework\nunitlite.projitems*{22857a11-108d-48c6-9a23-2217d2f2c365}*SharedItemsImports = 4
+		src\NUnitFramework\framework\nunit.framework.projitems*{22857a11-108d-48c6-9a23-2217d2f2c365}*SharedItemsImports = 4
 		src\NUnitFramework\framework\nunit.framework.projitems*{12b66b03-90f1-4992-bd33-bdf3c69ae49e}*SharedItemsImports = 4
 		src\NUnitFramework\framework\nunit.framework.projitems*{6a281c98-b74d-403b-8536-966871b992e3}*SharedItemsImports = 4
+		src\NUnitFramework\framework\nunitlite.projitems*{0bfa7f0a-bc15-40a5-863a-fa9b55ae2fd3}*SharedItemsImports = 4
+		src\NUnitFramework\framework\nunit.framework.projitems*{0bfa7f0a-bc15-40a5-863a-fa9b55ae2fd3}*SharedItemsImports = 4
 		src\NUnitFramework\framework\nunit.framework.projitems*{d209c368-1277-4ea6-a887-aa6eba51ab99}*SharedItemsImports = 4
+		src\NUnitFramework\framework\nunitlite.projitems*{3deb15f9-e7da-403f-b6d3-a8499310397f}*SharedItemsImports = 4
+		src\NUnitFramework\framework\nunit.framework.projitems*{3deb15f9-e7da-403f-b6d3-a8499310397f}*SharedItemsImports = 4
+		src\NUnitFramework\framework\nunitlite.projitems*{096c487d-815f-4722-8764-f346e8c20eba}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -426,5 +439,6 @@ Global
 		{12B66B03-90F1-4992-BD33-BDF3C69AE49E} = {64FE69B2-CE0B-4A47-83A3-9DE803851447}
 		{EE7E1D47-C686-496A-81F2-B05F085BC21F} = {FC222F6D-D86B-4ACD-85CC-31A3D8BCF967}
 		{6A281C98-B74D-403B-8536-966871B992E3} = {83154E24-B0DD-48E7-8BB5-55CF3D7B0FE3}
+		{096C487D-815F-4722-8764-F346E8C20EBA} = {449A7481-F26A-4465-A3C3-2D04AC9B23CB}
 	EndGlobalSection
 EndGlobal

@@ -83,7 +83,7 @@
     <Compile Include="MockAssembly.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\framework\nunitlite-4.5.csproj">
+    <ProjectReference Include="..\NET-4.5\nunitlite-4.5.csproj">
       <Project>{22857A11-108D-48C6-9A23-2217D2F2C365}</Project>
       <Name>nunitlite-4.5</Name>
     </ProjectReference>

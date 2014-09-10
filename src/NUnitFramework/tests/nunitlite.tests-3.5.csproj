@@ -270,7 +270,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\framework\nunitlite-3.5.csproj">
+    <ProjectReference Include="..\NET-3.5\nunitlite-3.5.csproj">
       <Project>{8C09BB92-C5F6-496C-BEE7-BB16677823D6}</Project>
       <Name>nunitlite-3.5</Name>
     </ProjectReference>
