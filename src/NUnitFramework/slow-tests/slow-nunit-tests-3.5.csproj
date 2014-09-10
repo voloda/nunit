@@ -49,7 +49,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\framework\nunit.framework-3.5.csproj">
+    <ProjectReference Include="..\NET-3.5\nunit.framework-3.5.csproj">
       <Project>{EE7E1D47-C686-496A-81F2-B05F085BC21F}</Project>
       <Name>nunit.framework-3.5</Name>
     </ProjectReference>

@@ -72,7 +72,7 @@
     <Compile Include="TestEngineResultTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\NUnitFramework\framework\nunit.framework-2.0.csproj">
+    <ProjectReference Include="..\..\NUnitFramework\NET-2.0\nunit.framework-2.0.csproj">
       <Project>{12b66b03-90f1-4992-bd33-bdf3c69ae49e}</Project>
       <Name>nunit.framework-2.0</Name>
     </ProjectReference>
