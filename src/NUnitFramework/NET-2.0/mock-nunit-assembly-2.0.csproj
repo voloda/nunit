@@ -4,12 +4,12 @@
     <ProjectType>Local</ProjectType>
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{2B797154-2349-4E0A-A3FD-08E620152B9A}</ProjectGuid>
+    <ProjectGuid>{2E368281-3BA8-4050-B05E-0E0E43F8F446}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <AssemblyKeyContainerName>
     </AssemblyKeyContainerName>
-    <AssemblyName>mock-nunitlite-assembly</AssemblyName>
+    <AssemblyName>mock-nunit-assembly</AssemblyName>
     <DefaultClientScript>JScript</DefaultClientScript>
     <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
     <DefaultTargetSchema>IE50</DefaultTargetSchema>
@@ -22,14 +22,15 @@
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <OldToolsVersion>3.5</OldToolsVersion>
-    <IntermediateOutputPath>obj\$(Configuration)\net-4.0\</IntermediateOutputPath>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <IntermediateOutputPath>obj\$(Configuration)\net-2.0\</IntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <OutputPath>..\..\..\bin\Debug\net-4.0\</OutputPath>
+    <OutputPath>..\..\..\bin\Debug\net-2.0\</OutputPath>
     <BaseAddress>285212672</BaseAddress>
     <ConfigurationOverrideFile>
     </ConfigurationOverrideFile>
-    <DefineConstants>TRACE;DEBUG;NUNITLITE;NET_4_0</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;NET_2_0</DefineConstants>
     <DocumentationFile>
     </DocumentationFile>
     <DebugSymbols>true</DebugSymbols>
@@ -42,11 +43,11 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <OutputPath>..\..\..\bin\Release\net-4.0\</OutputPath>
+    <OutputPath>..\..\..\bin\Release\net-2.0\</OutputPath>
     <BaseAddress>285212672</BaseAddress>
     <ConfigurationOverrideFile>
     </ConfigurationOverrideFile>
-    <DefineConstants>TRACE;NUNITLITE;NET_4_0</DefineConstants>
+    <DefineConstants>TRACE;NET_2_0</DefineConstants>
     <DocumentationFile>
     </DocumentationFile>
     <FileAlignment>4096</FileAlignment>
@@ -75,18 +76,18 @@
     <Compile Include="..\FrameworkVersion.cs">
       <Link>FrameworkVersion.cs</Link>
     </Compile>
-    <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="MockAssembly.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\NET-4.0\nunitlite-4.0.csproj">
-      <Project>{73A8B041-E719-443D-BF32-7944F117996C}</Project>
-      <Name>nunitlite-4.0</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NET-2.0\nunit.framework-2.0.csproj">
+      <Project>{12b66b03-90f1-4992-bd33-bdf3c69ae49e}</Project>
+      <Name>nunit.framework-2.0</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="mock-nunit-assembly.projitems" Label="Shared" Condition="Exists('mock-nunit-assembly.projitems')" />
+  <Import Project="..\mock-assembly\mock-nunit-assembly.projitems" Label="Shared" Condition="Exists('..\mock-assembly\mock-nunit-assembly.projitems')" />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>

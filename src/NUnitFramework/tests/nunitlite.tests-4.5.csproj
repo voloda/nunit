@@ -282,7 +282,7 @@
       <Project>{22857A11-108D-48C6-9A23-2217D2F2C365}</Project>
       <Name>nunitlite-4.5</Name>
     </ProjectReference>
-    <ProjectReference Include="..\mock-assembly\mock-nunitlite-assembly-4.5.csproj">
+    <ProjectReference Include="..\NET-4.5\mock-nunitlite-assembly-4.5.csproj">
       <Project>{8BD8DAEC-1FBC-4916-BD71-27C31C0E11E4}</Project>
       <Name>mock-nunitlite-assembly-4.5</Name>
     </ProjectReference>

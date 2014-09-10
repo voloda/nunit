@@ -249,7 +249,7 @@
       <Project>{EE7E1D47-C686-496A-81F2-B05F085BC21F}</Project>
       <Name>nunit.framework-3.5</Name>
     </ProjectReference>
-    <ProjectReference Include="..\mock-assembly\mock-nunit-assembly-3.5.csproj">
+    <ProjectReference Include="..\NET-3.5\mock-nunit-assembly-3.5.csproj">
       <Project>{7C36E4B4-16A7-450B-9919-BA35825F46B6}</Project>
       <Name>mock-nunit-assembly-3.5</Name>
     </ProjectReference>

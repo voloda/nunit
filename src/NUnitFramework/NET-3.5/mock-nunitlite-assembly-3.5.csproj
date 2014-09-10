@@ -4,7 +4,7 @@
     <ProjectType>Local</ProjectType>
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{8BD8DAEC-1FBC-4916-BD71-27C31C0E11E4}</ProjectGuid>
+    <ProjectGuid>{54140EA6-EB39-49FF-BA63-997EBD41EA8F}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <AssemblyKeyContainerName>
@@ -22,16 +22,15 @@
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <OldToolsVersion>3.5</OldToolsVersion>
-    <IntermediateOutputPath>obj\$(Configuration)\net-4.5\</IntermediateOutputPath>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <TargetFrameworkProfile />
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <IntermediateOutputPath>obj\$(Configuration)\net-3.5\</IntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <OutputPath>..\..\..\bin\Debug\net-4.5\</OutputPath>
+    <OutputPath>..\..\..\bin\Debug\net-3.5\</OutputPath>
     <BaseAddress>285212672</BaseAddress>
     <ConfigurationOverrideFile>
     </ConfigurationOverrideFile>
-    <DefineConstants>TRACE;DEBUG;NUNITLITE,NET_4_5</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;NET_3_5;NUNITLITE</DefineConstants>
     <DocumentationFile>
     </DocumentationFile>
     <DebugSymbols>true</DebugSymbols>
@@ -42,14 +41,13 @@
     <WarningLevel>4</WarningLevel>
     <DebugType>full</DebugType>
     <ErrorReport>prompt</ErrorReport>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <OutputPath>..\..\..\bin\Release\net-4.5\</OutputPath>
+    <OutputPath>..\..\..\bin\Release\net-3.5\</OutputPath>
     <BaseAddress>285212672</BaseAddress>
     <ConfigurationOverrideFile>
     </ConfigurationOverrideFile>
-    <DefineConstants>TRACE;NUNITLITE,NET_4_5</DefineConstants>
+    <DefineConstants>TRACE;NET_3_5;NUNITLITE</DefineConstants>
     <DocumentationFile>
     </DocumentationFile>
     <FileAlignment>4096</FileAlignment>
@@ -59,7 +57,6 @@
     <WarningLevel>4</WarningLevel>
     <DebugType>none</DebugType>
     <ErrorReport>prompt</ErrorReport>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System">
@@ -79,18 +76,18 @@
     <Compile Include="..\FrameworkVersion.cs">
       <Link>FrameworkVersion.cs</Link>
     </Compile>
-    <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="MockAssembly.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NET-4.5\nunitlite-4.5.csproj">
-      <Project>{22857A11-108D-48C6-9A23-2217D2F2C365}</Project>
-      <Name>nunitlite-4.5</Name>
+    <ProjectReference Include="..\NET-3.5\nunitlite-3.5.csproj">
+      <Project>{8C09BB92-C5F6-496C-BEE7-BB16677823D6}</Project>
+      <Name>nunitlite-3.5</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
+  <Import Project="mock-nunit-assembly.projitems" Label="Shared" Condition="Exists('mock-nunit-assembly.projitems')" />
+  <Import Project="..\mock-assembly\mock-nunit-assembly.projitems" Label="Shared" Condition="Exists('..\mock-assembly\mock-nunit-assembly.projitems')" />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>

@@ -260,7 +260,7 @@
       <Project>{12b66b03-90f1-4992-bd33-bdf3c69ae49e}</Project>
       <Name>nunit.framework-2.0</Name>
     </ProjectReference>
-    <ProjectReference Include="..\mock-assembly\mock-nunit-assembly-2.0.csproj">
+    <ProjectReference Include="..\NET-2.0\mock-nunit-assembly-2.0.csproj">
       <Project>{2e368281-3ba8-4050-b05e-0e0e43f8f446}</Project>
       <Name>mock-nunit-assembly-2.0</Name>
     </ProjectReference>

@@ -20,9 +20,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NET-2.0", "NET-2.0", "{64FE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nunitlite-2.0", "src\NUnitFramework\NET-2.0\nunitlite-2.0.csproj", "{0BFA7F0A-BC15-40A5-863A-FA9B55AE2FD3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mock-nunit-assembly-2.0", "src\NUnitFramework\mock-assembly\mock-nunit-assembly-2.0.csproj", "{2E368281-3BA8-4050-B05E-0E0E43F8F446}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mock-nunit-assembly-2.0", "src\NUnitFramework\NET-2.0\mock-nunit-assembly-2.0.csproj", "{2E368281-3BA8-4050-B05E-0E0E43F8F446}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mock-nunitlite-assembly-2.0", "src\NUnitFramework\mock-assembly\mock-nunitlite-assembly-2.0.csproj", "{7BE679EF-3853-4E06-B4EB-C4C6808BC3F0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mock-nunitlite-assembly-2.0", "src\NUnitFramework\NET-2.0\mock-nunitlite-assembly-2.0.csproj", "{7BE679EF-3853-4E06-B4EB-C4C6808BC3F0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nunit.testdata-2.0", "src\NUnitFramework\testdata\nunit.testdata-2.0.csproj", "{15B64946-4989-4873-915C-3E181772FA03}"
 EndProject
@@ -58,9 +58,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NET-4.5", "NET-4.5", "{7B57
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nunitlite-3.5", "src\NUnitFramework\NET-3.5\nunitlite-3.5.csproj", "{8C09BB92-C5F6-496C-BEE7-BB16677823D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mock-nunit-assembly-3.5", "src\NUnitFramework\mock-assembly\mock-nunit-assembly-3.5.csproj", "{7C36E4B4-16A7-450B-9919-BA35825F46B6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mock-nunit-assembly-3.5", "src\NUnitFramework\NET-3.5\mock-nunit-assembly-3.5.csproj", "{7C36E4B4-16A7-450B-9919-BA35825F46B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mock-nunitlite-assembly-3.5", "src\NUnitFramework\mock-assembly\mock-nunitlite-assembly-3.5.csproj", "{54140EA6-EB39-49FF-BA63-997EBD41EA8F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mock-nunitlite-assembly-3.5", "src\NUnitFramework\NET-3.5\mock-nunitlite-assembly-3.5.csproj", "{54140EA6-EB39-49FF-BA63-997EBD41EA8F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "slow-nunitlite-tests-3.5", "src\NUnitFramework\slow-tests\slow-nunitlite-tests-3.5.csproj", "{A21A64F1-0785-4E3A-AA99-DC7118076FE7}"
 EndProject
@@ -78,9 +78,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test-harness-3.5", "src\NUn
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nunitlite-4.0", "src\NUnitFramework\NET-4.0\nunitlite-4.0.csproj", "{73A8B041-E719-443D-BF32-7944F117996C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mock-nunit-assembly-4.0", "src\NUnitFramework\mock-assembly\mock-nunit-assembly-4.0.csproj", "{DDCE1AE3-AA0D-4E2D-AD1B-8CA322AFA7DD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mock-nunit-assembly-4.0", "src\NUnitFramework\NET-4.0\mock-nunit-assembly-4.0.csproj", "{DDCE1AE3-AA0D-4E2D-AD1B-8CA322AFA7DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mock-nunitlite-assembly-4.0", "src\NUnitFramework\mock-assembly\mock-nunitlite-assembly-4.0.csproj", "{2B797154-2349-4E0A-A3FD-08E620152B9A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mock-nunitlite-assembly-4.0", "src\NUnitFramework\NET-4.0\mock-nunitlite-assembly-4.0.csproj", "{2B797154-2349-4E0A-A3FD-08E620152B9A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "slow-nunitlite-tests-4.0", "src\NUnitFramework\slow-tests\slow-nunitlite-tests-4.0.csproj", "{4819BAD7-D890-421F-8066-635540363341}"
 EndProject
@@ -98,9 +98,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test-harness-4.0", "src\NUn
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nunitlite-4.5", "src\NUnitFramework\NET-4.5\nunitlite-4.5.csproj", "{22857A11-108D-48C6-9A23-2217D2F2C365}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mock-nunit-assembly-4.5", "src\NUnitFramework\mock-assembly\mock-nunit-assembly-4.5.csproj", "{C3264FF3-E2D7-48D7-93A7-CDC9A827AD9D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mock-nunit-assembly-4.5", "src\NUnitFramework\NET-4.5\mock-nunit-assembly-4.5.csproj", "{C3264FF3-E2D7-48D7-93A7-CDC9A827AD9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mock-nunitlite-assembly-4.5", "src\NUnitFramework\mock-assembly\mock-nunitlite-assembly-4.5.csproj", "{8BD8DAEC-1FBC-4916-BD71-27C31C0E11E4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mock-nunitlite-assembly-4.5", "src\NUnitFramework\NET-4.5\mock-nunitlite-assembly-4.5.csproj", "{8BD8DAEC-1FBC-4916-BD71-27C31C0E11E4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "slow-nunitlite-tests-4.5", "src\NUnitFramework\slow-tests\slow-nunitlite-tests-4.5.csproj", "{A1EC7838-6B9C-4FC6-A711-80FE8AAE01D8}"
 EndProject
@@ -140,28 +140,39 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "nunitlite", "src\NUnitFrame
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "test-harness", "src\NUnitFramework\harness\test-harness.shproj", "{E23498CC-A7CD-4E68-A6FE-A79B398092C3}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "mock-nunit-assembly", "src\NUnitFramework\mock-assembly\mock-nunit-assembly.shproj", "{187379BF-6361-4CF3-B78A-0ECAF8ECA9BA}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		src\NUnitFramework\mock-assembly\mock-nunit-assembly.projitems*{7be679ef-3853-4e06-b4eb-c4c6808bc3f0}*SharedItemsImports = 4
 		src\NUnitFramework\framework\nunit.framework.projitems*{ee7e1d47-c686-496a-81f2-b05f085bc21f}*SharedItemsImports = 4
 		src\NUnitFramework\harness\test-harness.projitems*{0ab71103-ee12-4b1c-999d-7b66c26863c8}*SharedItemsImports = 4
+		src\NUnitFramework\mock-assembly\mock-nunit-assembly.projitems*{8bd8daec-1fbc-4916-bd71-27c31c0e11e4}*SharedItemsImports = 4
+		src\NUnitFramework\mock-assembly\mock-nunit-assembly.projitems*{7c36e4b4-16a7-450b-9919-ba35825f46b6}*SharedItemsImports = 4
 		src\NUnitFramework\harness\test-harness.projitems*{e23498cc-a7cd-4e68-a6fe-a79b398092c3}*SharedItemsImports = 13
-		src\NUnitFramework\framework\nunitlite.projitems*{73a8b041-e719-443d-bf32-7944f117996c}*SharedItemsImports = 4
+		src\NUnitFramework\mock-assembly\mock-nunit-assembly.projitems*{c3264ff3-e2d7-48d7-93a7-cdc9a827ad9d}*SharedItemsImports = 4
 		src\NUnitFramework\framework\nunit.framework.projitems*{73a8b041-e719-443d-bf32-7944f117996c}*SharedItemsImports = 4
-		src\NUnitFramework\framework\nunitlite.projitems*{8c09bb92-c5f6-496c-bee7-bb16677823d6}*SharedItemsImports = 4
+		src\NUnitFramework\framework\nunitlite.projitems*{73a8b041-e719-443d-bf32-7944f117996c}*SharedItemsImports = 4
 		src\NUnitFramework\framework\nunit.framework.projitems*{8c09bb92-c5f6-496c-bee7-bb16677823d6}*SharedItemsImports = 4
+		src\NUnitFramework\framework\nunitlite.projitems*{8c09bb92-c5f6-496c-bee7-bb16677823d6}*SharedItemsImports = 4
+		src\NUnitFramework\mock-assembly\mock-nunit-assembly.projitems*{ddce1ae3-aa0d-4e2d-ad1b-8ca322afa7dd}*SharedItemsImports = 4
+		src\NUnitFramework\mock-assembly\mock-nunit-assembly.projitems*{2b797154-2349-4e0a-a3fd-08e620152b9a}*SharedItemsImports = 4
 		src\NUnitFramework\framework\nunit.framework.projitems*{0771e1cf-40a4-444e-aa94-47573f409cfd}*SharedItemsImports = 13
-		src\NUnitFramework\framework\nunitlite.projitems*{22857a11-108d-48c6-9a23-2217d2f2c365}*SharedItemsImports = 4
 		src\NUnitFramework\framework\nunit.framework.projitems*{22857a11-108d-48c6-9a23-2217d2f2c365}*SharedItemsImports = 4
+		src\NUnitFramework\framework\nunitlite.projitems*{22857a11-108d-48c6-9a23-2217d2f2c365}*SharedItemsImports = 4
 		src\NUnitFramework\harness\test-harness.projitems*{c5038911-f8c3-4b55-8b07-2f52c969176d}*SharedItemsImports = 4
+		src\NUnitFramework\mock-assembly\mock-nunit-assembly.projitems*{2e368281-3ba8-4050-b05e-0e0e43f8f446}*SharedItemsImports = 4
+		src\NUnitFramework\mock-assembly\mock-nunit-assembly.projitems*{54140ea6-eb39-49ff-ba63-997ebd41ea8f}*SharedItemsImports = 4
 		src\NUnitFramework\harness\test-harness.projitems*{d69735de-4846-4239-b552-a423a8e8ce71}*SharedItemsImports = 4
 		src\NUnitFramework\framework\nunit.framework.projitems*{12b66b03-90f1-4992-bd33-bdf3c69ae49e}*SharedItemsImports = 4
 		src\NUnitFramework\harness\test-harness.projitems*{126dbbb4-1731-4e0d-8937-4f2faadca0ef}*SharedItemsImports = 4
 		src\NUnitFramework\framework\nunit.framework.projitems*{6a281c98-b74d-403b-8536-966871b992e3}*SharedItemsImports = 4
-		src\NUnitFramework\framework\nunitlite.projitems*{0bfa7f0a-bc15-40a5-863a-fa9b55ae2fd3}*SharedItemsImports = 4
 		src\NUnitFramework\framework\nunit.framework.projitems*{0bfa7f0a-bc15-40a5-863a-fa9b55ae2fd3}*SharedItemsImports = 4
+		src\NUnitFramework\framework\nunitlite.projitems*{0bfa7f0a-bc15-40a5-863a-fa9b55ae2fd3}*SharedItemsImports = 4
 		src\NUnitFramework\framework\nunit.framework.projitems*{d209c368-1277-4ea6-a887-aa6eba51ab99}*SharedItemsImports = 4
-		src\NUnitFramework\framework\nunitlite.projitems*{3deb15f9-e7da-403f-b6d3-a8499310397f}*SharedItemsImports = 4
 		src\NUnitFramework\framework\nunit.framework.projitems*{3deb15f9-e7da-403f-b6d3-a8499310397f}*SharedItemsImports = 4
+		src\NUnitFramework\framework\nunitlite.projitems*{3deb15f9-e7da-403f-b6d3-a8499310397f}*SharedItemsImports = 4
+		src\NUnitFramework\mock-assembly\mock-nunit-assembly.projitems*{187379bf-6361-4cf3-b78a-0ecaf8eca9ba}*SharedItemsImports = 13
 		src\NUnitFramework\framework\nunitlite.projitems*{096c487d-815f-4722-8764-f346e8c20eba}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -448,5 +459,6 @@ Global
 		{6A281C98-B74D-403B-8536-966871B992E3} = {83154E24-B0DD-48E7-8BB5-55CF3D7B0FE3}
 		{096C487D-815F-4722-8764-F346E8C20EBA} = {449A7481-F26A-4465-A3C3-2D04AC9B23CB}
 		{E23498CC-A7CD-4E68-A6FE-A79B398092C3} = {449A7481-F26A-4465-A3C3-2D04AC9B23CB}
+		{187379BF-6361-4CF3-B78A-0ECAF8ECA9BA} = {449A7481-F26A-4465-A3C3-2D04AC9B23CB}
 	EndGlobalSection
 EndGlobal
