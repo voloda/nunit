@@ -21,8 +21,8 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // ***********************************************************************
 
-using System;
 #if !NUNITLITE
+using System;
 using System.IO;
 using System.ComponentModel;
 using NUnit.Framework.Constraints;
