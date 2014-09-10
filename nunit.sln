@@ -32,7 +32,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "slow-nunitlite-tests-2.0", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "slow-nunit-tests-2.0", "src\NUnitFramework\slow-tests\slow-nunit-tests-2.0.csproj", "{B0791F6D-5D14-40DD-A2CB-5D2A97892693}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test-harness-2.0", "src\NUnitFramework\harness\test-harness-2.0.csproj", "{126DBBB4-1731-4E0D-8937-4F2FAADCA0EF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test-harness-2.0", "src\NUnitFramework\NET-2.0\test-harness-2.0.csproj", "{126DBBB4-1731-4E0D-8937-4F2FAADCA0EF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nunit.framework.tests-2.0", "src\NUnitFramework\tests\nunit.framework.tests-2.0.csproj", "{EA9871E3-9972-4476-821E-3961C28125E8}"
 EndProject
@@ -74,7 +74,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nunit.framework.tests-3.5",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nunitlite.tests-3.5", "src\NUnitFramework\tests\nunitlite.tests-3.5.csproj", "{A18A4BB4-2188-464C-9FC0-53C3941789FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test-harness-3.5", "src\NUnitFramework\harness\test-harness-3.5.csproj", "{C5038911-F8C3-4B55-8B07-2F52C969176D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test-harness-3.5", "src\NUnitFramework\NET-3.5\test-harness-3.5.csproj", "{C5038911-F8C3-4B55-8B07-2F52C969176D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nunitlite-4.0", "src\NUnitFramework\NET-4.0\nunitlite-4.0.csproj", "{73A8B041-E719-443D-BF32-7944F117996C}"
 EndProject
@@ -94,7 +94,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nunit.framework.tests-4.0",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nunitlite.tests-4.0", "src\NUnitFramework\tests\nunitlite.tests-4.0.csproj", "{0ED3994A-C301-4C59-AE36-C62976DC28CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test-harness-4.0", "src\NUnitFramework\harness\test-harness-4.0.csproj", "{D69735DE-4846-4239-B552-A423A8E8CE71}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test-harness-4.0", "src\NUnitFramework\NET-4.0\test-harness-4.0.csproj", "{D69735DE-4846-4239-B552-A423A8E8CE71}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nunitlite-4.5", "src\NUnitFramework\NET-4.5\nunitlite-4.5.csproj", "{22857A11-108D-48C6-9A23-2217D2F2C365}"
 EndProject
@@ -114,7 +114,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nunit.framework.tests-4.5",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nunitlite.tests-4.5", "src\NUnitFramework\tests\nunitlite.tests-4.5.csproj", "{49FF585D-0D65-4BC2-AC46-C716C54F6CBF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test-harness-4.5", "src\NUnitFramework\harness\test-harness-4.5.csproj", "{0AB71103-EE12-4B1C-999D-7B66C26863C8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test-harness-4.5", "src\NUnitFramework\NET-4.5\test-harness-4.5.csproj", "{0AB71103-EE12-4B1C-999D-7B66C26863C8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SL-5.0", "SL-5.0", "{A21BFC37-44FC-41A0-B6E7-6F949F45A635}"
 EndProject
@@ -138,9 +138,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nunit.framework-4.0", "src\
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "nunitlite", "src\NUnitFramework\framework\nunitlite.shproj", "{096C487D-815F-4722-8764-F346E8C20EBA}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "test-harness", "src\NUnitFramework\harness\test-harness.shproj", "{E23498CC-A7CD-4E68-A6FE-A79B398092C3}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		src\NUnitFramework\framework\nunit.framework.projitems*{ee7e1d47-c686-496a-81f2-b05f085bc21f}*SharedItemsImports = 4
+		src\NUnitFramework\harness\test-harness.projitems*{0ab71103-ee12-4b1c-999d-7b66c26863c8}*SharedItemsImports = 4
+		src\NUnitFramework\harness\test-harness.projitems*{e23498cc-a7cd-4e68-a6fe-a79b398092c3}*SharedItemsImports = 13
 		src\NUnitFramework\framework\nunitlite.projitems*{73a8b041-e719-443d-bf32-7944f117996c}*SharedItemsImports = 4
 		src\NUnitFramework\framework\nunit.framework.projitems*{73a8b041-e719-443d-bf32-7944f117996c}*SharedItemsImports = 4
 		src\NUnitFramework\framework\nunitlite.projitems*{8c09bb92-c5f6-496c-bee7-bb16677823d6}*SharedItemsImports = 4
@@ -148,7 +152,10 @@ Global
 		src\NUnitFramework\framework\nunit.framework.projitems*{0771e1cf-40a4-444e-aa94-47573f409cfd}*SharedItemsImports = 13
 		src\NUnitFramework\framework\nunitlite.projitems*{22857a11-108d-48c6-9a23-2217d2f2c365}*SharedItemsImports = 4
 		src\NUnitFramework\framework\nunit.framework.projitems*{22857a11-108d-48c6-9a23-2217d2f2c365}*SharedItemsImports = 4
+		src\NUnitFramework\harness\test-harness.projitems*{c5038911-f8c3-4b55-8b07-2f52c969176d}*SharedItemsImports = 4
+		src\NUnitFramework\harness\test-harness.projitems*{d69735de-4846-4239-b552-a423a8e8ce71}*SharedItemsImports = 4
 		src\NUnitFramework\framework\nunit.framework.projitems*{12b66b03-90f1-4992-bd33-bdf3c69ae49e}*SharedItemsImports = 4
+		src\NUnitFramework\harness\test-harness.projitems*{126dbbb4-1731-4e0d-8937-4f2faadca0ef}*SharedItemsImports = 4
 		src\NUnitFramework\framework\nunit.framework.projitems*{6a281c98-b74d-403b-8536-966871b992e3}*SharedItemsImports = 4
 		src\NUnitFramework\framework\nunitlite.projitems*{0bfa7f0a-bc15-40a5-863a-fa9b55ae2fd3}*SharedItemsImports = 4
 		src\NUnitFramework\framework\nunit.framework.projitems*{0bfa7f0a-bc15-40a5-863a-fa9b55ae2fd3}*SharedItemsImports = 4
@@ -440,5 +447,6 @@ Global
 		{EE7E1D47-C686-496A-81F2-B05F085BC21F} = {FC222F6D-D86B-4ACD-85CC-31A3D8BCF967}
 		{6A281C98-B74D-403B-8536-966871B992E3} = {83154E24-B0DD-48E7-8BB5-55CF3D7B0FE3}
 		{096C487D-815F-4722-8764-F346E8C20EBA} = {449A7481-F26A-4465-A3C3-2D04AC9B23CB}
+		{E23498CC-A7CD-4E68-A6FE-A79B398092C3} = {449A7481-F26A-4465-A3C3-2D04AC9B23CB}
 	EndGlobalSection
 EndGlobal

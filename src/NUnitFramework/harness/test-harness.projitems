@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>E23498CC-A7CD-4E68-A6FE-A79B398092C3</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>NUnit.Framework.TestHarness</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AssemblyInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CallbackHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ConsoleRunner.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FrameworkDriver.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IResultWriter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Options\CommandLineOptions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Options\Options.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OutputManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OutputSpecification.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OutputWriters\NUnit2TestResultWriter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OutputWriters\NUnit3TestResultWriter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Program.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ResultReporter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ResultSummary.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RunTestsCallbackHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TeamCityServiceMessages.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Tests\CommandLineOptionTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Tests\OutputSpecificationTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Tests\TeamCityServiceMessageTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Tests\TestFilterBuilderTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Tests\TestNameParserTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utilities\StackTraceFilter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utilities\TestFilterBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utilities\TestNameParser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utilities\XmlHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)test-harness.build" />
+  </ItemGroup>
+</Project>

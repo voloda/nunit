@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{D69735DE-4846-4239-B552-A423A8E8CE71}</ProjectGuid>
+    <ProjectGuid>{0AB71103-EE12-4B1C-999D-7B66C26863C8}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NUnit.Framework.TestHarness</RootNamespace>
@@ -30,30 +30,32 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <IntermediateOutputPath>obj\$(Configuration)\net-4.0\</IntermediateOutputPath>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <IntermediateOutputPath>obj\$(Configuration)\net-4.5\</IntermediateOutputPath>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\bin\Debug\net-4.0\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;NET_4_0</DefineConstants>
+    <OutputPath>..\..\..\bin\Debug\net-4.5\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NET_4_5</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Commandlineparameters>nunit.framework.tests.dll -a</Commandlineparameters>
     <Externalconsole>true</Externalconsole>
     <UseVSHostingProcess>true</UseVSHostingProcess>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\bin\Release\net-4.0\</OutputPath>
-    <DefineConstants>TRACE;NET_4_0</DefineConstants>
+    <OutputPath>..\..\..\bin\Release\net-4.5\</OutputPath>
+    <DefineConstants>TRACE;NET_4_5</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Commandlineparameters>nunit.framework.tests.dll</Commandlineparameters>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -73,29 +75,6 @@
     <Compile Include="..\FrameworkVersion.cs">
       <Link>FrameworkVersion.cs</Link>
     </Compile>
-    <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="CallbackHandler.cs" />
-    <Compile Include="ConsoleRunner.cs" />
-    <Compile Include="FrameworkDriver.cs" />
-    <Compile Include="IResultWriter.cs" />
-    <Compile Include="Options\CommandLineOptions.cs" />
-    <Compile Include="Options\Options.cs" />
-    <Compile Include="OutputManager.cs" />
-    <Compile Include="OutputSpecification.cs" />
-    <Compile Include="OutputWriters\NUnit2TestResultWriter.cs" />
-    <Compile Include="OutputWriters\NUnit3TestResultWriter.cs" />
-    <Compile Include="Program.cs" />
-    <Compile Include="ResultReporter.cs" />
-    <Compile Include="ResultSummary.cs" />
-    <Compile Include="RunTestsCallbackHandler.cs" />
-    <Compile Include="TeamCityServiceMessages.cs" />
-    <Compile Include="Tests\CommandLineOptionTests.cs" />
-    <Compile Include="Tests\TestFilterBuilderTests.cs" />
-    <Compile Include="Tests\TestNameParserTests.cs" />
-    <Compile Include="Utilities\StackTraceFilter.cs" />
-    <Compile Include="Utilities\TestFilterBuilder.cs" />
-    <Compile Include="Utilities\TestNameParser.cs" />
-    <Compile Include="Utilities\XmlHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
@@ -120,17 +99,15 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NET-4.0\nunit.framework-4.0.csproj">
-      <Project>{6A281C98-B74D-403B-8536-966871B992E3}</Project>
-      <Name>nunit.framework-4.0</Name>
+    <ProjectReference Include="..\NET-4.5\nunit.framework-4.5.csproj">
+      <Project>{D209C368-1277-4EA6-A887-AA6EBA51AB99}</Project>
+      <Name>nunit.framework-4.5</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="test-harness.build" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
+  <Import Project="..\harness\test-harness.projitems" Label="Shared" Condition="Exists('..\harness\test-harness.projitems')" />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
