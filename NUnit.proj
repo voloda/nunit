@@ -335,22 +335,22 @@
 	
 	<!-- Lists of Projects -->
 	<ItemGroup>
-		<NUnitProjects Include="$(FrameworkSrcDir)\framework\nunit.framework-$(ProjectSuffix).csproj"></NUnitProjects>
-		<NUnitProjects Include="$(FrameworkSrcDir)\mock-assembly\mock-nunit-assembly-$(ProjectSuffix).csproj"></NUnitProjects>
-		<NUnitProjects Include="$(FrameworkSrcDir)\testdata\nunit.testdata-$(ProjectSuffix).csproj"></NUnitProjects>
-		<NUnitProjects Include="$(FrameworkSrcDir)\slow-tests\slow-nunit-tests-$(ProjectSuffix).csproj"></NUnitProjects>
-		<NUnitProjects Include="$(FrameworkSrcDir)\tests\nunit.framework.tests-$(ProjectSuffix).csproj"></NUnitProjects>
-		<NUnitProjects Include="$(FrameworkSrcDir)\harness\test-harness-$(ProjectSuffix).csproj"></NUnitProjects>
+		<NUnitProjects Include="$(FrameworkSrcDir)\$(Framework)\nunit.framework-$(ProjectSuffix).csproj"></NUnitProjects>
+		<NUnitProjects Include="$(FrameworkSrcDir)\$(Framework)\mock-nunit-assembly-$(ProjectSuffix).csproj"></NUnitProjects>
+		<NUnitProjects Include="$(FrameworkSrcDir)\$(Framework)\nunit.testdata-$(ProjectSuffix).csproj"></NUnitProjects>
+		<NUnitProjects Include="$(FrameworkSrcDir)\$(Framework)\slow-nunit-tests-$(ProjectSuffix).csproj"></NUnitProjects>
+		<NUnitProjects Include="$(FrameworkSrcDir)\$(Framework)\nunit.framework.tests-$(ProjectSuffix).csproj"></NUnitProjects>
+		<NUnitProjects Include="$(FrameworkSrcDir)\$(Framework)\test-harness-$(ProjectSuffix).csproj"></NUnitProjects>
 	</ItemGroup>
 	
 	<ItemGroup>
-		<NUnitLiteProjects Include="$(FrameworkSrcDir)\framework\nunitlite-$(ProjectSuffix).csproj"></NUnitLiteProjects>
-		<NUnitLiteProjects Include="$(FrameworkSrcDir)\mock-assembly\mock-nunitlite-assembly-$(ProjectSuffix).csproj"
+		<NUnitLiteProjects Include="$(FrameworkSrcDir)\$(Framework)\nunitlite-$(ProjectSuffix).csproj"></NUnitLiteProjects>
+		<NUnitLiteProjects Include="$(FrameworkSrcDir)\$(Framework)\mock-nunitlite-assembly-$(ProjectSuffix).csproj"
 							Condition="'$(Runtime)' != 'netcf' And '$(Runtime)' != 'silverlight'"></NUnitLiteProjects>
-		<NUnitLiteProjects Include="$(FrameworkSrcDir)\slow-tests\slow-nunitlite-tests-$(ProjectSuffix).csproj"
+		<NUnitLiteProjects Include="$(FrameworkSrcDir)\$(Framework)\slow-nunitlite-tests-$(ProjectSuffix).csproj"
 							Condition="'$(Runtime)' != 'netcf' And '$(Runtime)' != 'silverlight'"></NUnitLiteProjects>
-		<NUnitLiteProjects Include="$(FrameworkSrcDir)\testdata\nunitlite.testdata-$(ProjectSuffix).csproj"></NUnitLiteProjects>
-		<NUnitLiteProjects Include="$(FrameworkSrcDir)\tests\nunitlite.tests-$(ProjectSuffix).csproj"></NUnitLiteProjects>
+		<NUnitLiteProjects Include="$(FrameworkSrcDir)\$(Framework)\nunitlite.testdata-$(ProjectSuffix).csproj"></NUnitLiteProjects>
+		<NUnitLiteProjects Include="$(FrameworkSrcDir)\$(Framework)\nunitlite.tests-$(ProjectSuffix).csproj"></NUnitLiteProjects>
 	</ItemGroup>
 	
 	<ItemGroup>
