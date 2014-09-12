@@ -43,6 +43,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Attributes\ApplyToContextTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Attributes\ApplyToTestTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Attributes\AttributeInheritanceTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Attributes\AuthorTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Attributes\CategoryAttributeTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Attributes\CombinatorialTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Attributes\DatapointTests.cs" />
@@ -65,6 +66,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Attributes\TestExpectedResult.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Attributes\TestFixtureAttributeTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Attributes\TestMethodBuilderTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Attributes\TestOfTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Attributes\TheoryTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Attributes\ThreadingTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Attributes\TimeoutTests.cs" />
@@ -204,9 +206,5 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)TestImage2.jpg" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)TestText1.txt" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)TestText2.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)nunit.framework.tests.build" />
-    <None Include="$(MSBuildThisFileDirectory)nunitlite.tests.build" />
   </ItemGroup>
 </Project>

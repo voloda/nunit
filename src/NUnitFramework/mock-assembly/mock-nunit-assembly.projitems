@@ -12,8 +12,4 @@
     <Compile Include="$(MSBuildThisFileDirectory)AssemblyInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MockAssembly.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)mock-nunit-assembly.build" />
-    <None Include="$(MSBuildThisFileDirectory)mock-nunitlite-assembly.build" />
-  </ItemGroup>
 </Project>

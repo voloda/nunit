@@ -9,10 +9,6 @@
     <Import_RootNamespace>NUnit.Tests</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)slow-nunit-tests.build" />
-    <None Include="$(MSBuildThisFileDirectory)slow-nunitlite-tests.build" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Properties\AssemblyInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SlowTests.cs" />
   </ItemGroup>

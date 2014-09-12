@@ -16,6 +16,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)AsyncDummyFixture.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AsyncRealFixture.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AttributeInheritanceData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AuthorFixture.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CategoryAttributeData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CultureAttributeData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DatapointFixture.cs" />
@@ -33,13 +34,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)TestFixtureData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestFixtureExtensionData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestMethodSignatureFixture.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestOfFixture.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TheoryFixture.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TimeoutFixture.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UnexpectedExceptionFixture.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UnhandledExceptions.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)nunit.testdata.build" />
-    <None Include="$(MSBuildThisFileDirectory)nunitlite.testdata.build" />
   </ItemGroup>
 </Project>

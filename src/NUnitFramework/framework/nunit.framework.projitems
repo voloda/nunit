@@ -21,6 +21,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Assert.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AssertionHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Assume.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Attributes\AuthorAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Attributes\CategoryAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Attributes\CombinatorialAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Attributes\CombiningStrategyAttribute.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Attributes\TestFixtureAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Attributes\TestFixtureSetUpAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Attributes\TestFixtureTearDownAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Attributes\TestOfAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Attributes\TheoryAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Attributes\TimeoutAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Attributes\ValuesAttribute.cs" />
@@ -312,7 +314,6 @@
     <Content Include="$(MSBuildThisFileDirectory)Interfaces\InterfaceChanges.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)nunit.framework.build" />
     <None Include="$(MSBuildThisFileDirectory)nunit.snk" />
   </ItemGroup>
 </Project>

@@ -35,7 +35,4 @@
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\TestNameParser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\XmlHelper.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)test-harness.build" />
-  </ItemGroup>
 </Project>

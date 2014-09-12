@@ -27,7 +27,4 @@
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Runner\Silverlight\" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)nunitlite.build" />
-  </ItemGroup>
 </Project>
