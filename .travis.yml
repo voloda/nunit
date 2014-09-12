@@ -7,8 +7,8 @@ script: ./build /p:Configuration=Release /p:Framework=$Framework "/t:DumpSetting
   
 env:
   matrix:
-    - Framework="net-2.0"
-    - Framework="net-3.5"
-    - Framework="net-4.0"
-    - Framework="net-4.5"
+    - Framework="NET-2.0"
+    - Framework="NET-3.5"
+    - Framework="NET-4.0"
+    - Framework="NET-4.5"
     
