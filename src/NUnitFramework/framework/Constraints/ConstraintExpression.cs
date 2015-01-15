@@ -25,6 +25,10 @@ using System;
 using System.Collections;
 using System.Runtime.CompilerServices;
 
+#if !NET_2_0
+using System.Linq.Expressions;
+#endif
+
 namespace NUnit.Framework.Constraints
 {
     /// <summary>
@@ -216,6 +220,21 @@ namespace NUnit.Framework.Constraints
         {
             return this.Append(new PropOperator(name));
         }
+
+#if !NET_2_0
+        /// <summary>
+        /// Returns a new PropertyConstraintExpression, which will either
+        /// test for the existence of the named property on the object
+        /// being tested or apply any following constraint to that property.
+        /// </summary>
+        public ResolvableConstraintExpression Property<T>(Expression<Func<T, object>> expression)
+        {
+            var lambdaExpression = expression as LambdaExpression;
+            var unaryExpression = lambdaExpression.Body as UnaryExpression;
+            var memberExpression = unaryExpression.Operand as MemberExpression;
+            return Property(memberExpression.Member.Name);
+        }
+#endif
 
         #endregion
 

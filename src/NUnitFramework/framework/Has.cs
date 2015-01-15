@@ -22,8 +22,11 @@
 // ***********************************************************************
 
 using System;
-using System.Collections;
 using NUnit.Framework.Constraints;
+
+#if !NET_2_0
+using System.Linq.Expressions;
+#endif
 
 namespace NUnit.Framework
 {
@@ -113,6 +116,18 @@ namespace NUnit.Framework
         {
             return new ConstraintExpression().Property(name);
         }
+
+#if !NET_2_0
+        /// <summary>
+        /// Returns a new PropertyConstraintExpression, which will either
+        /// test for the existence of the named property on the object
+        /// being tested or apply any following constraint to that property.
+        /// </summary>
+        public static ResolvableConstraintExpression Property<T>(Expression<Func<T, object>> expression)
+        {
+            return new ConstraintExpression().Property(expression);
+        }
+#endif
 
         #endregion
 

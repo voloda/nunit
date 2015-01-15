@@ -21,9 +21,6 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // ***********************************************************************
 
-using System;
-using System.Collections;
-
 namespace NUnit.Framework.Syntax
 {
     public class PropertyExistsTest : SyntaxTest
@@ -73,6 +70,61 @@ namespace NUnit.Framework.Syntax
             builderSyntax = Builder().Property("X").Not.GreaterThan(5);
         }
     }
+
+#if !NET_2_0
+    public class LambdaPropertyTestClass
+    {
+        public int X { get; set; }
+    }
+
+    public class LambdaPropertyExistsTest : SyntaxTest
+    {
+        [SetUp]
+        public void SetUp()
+        {
+            parseTree = "<propertyexists X>";
+            staticSyntax = Has.Property<LambdaPropertyTestClass>(o => o.X);
+            inheritedSyntax = Helper().Property<LambdaPropertyTestClass>(o => o.X);
+            builderSyntax = Builder().Property<LambdaPropertyTestClass>(o => o.X);
+        }
+    }
+
+    public class LambdaPropertyExistsTest_AndFollows : SyntaxTest
+    {
+        [SetUp]
+        public void SetUp()
+        {
+            parseTree = "<and <propertyexists X> <equal 7>>";
+            staticSyntax = Has.Property<LambdaPropertyTestClass>(o => o.X).And.EqualTo(7);
+            inheritedSyntax = Helper().Property<LambdaPropertyTestClass>(o => o.X).And.EqualTo(7);
+            builderSyntax = Builder().Property<LambdaPropertyTestClass>(o => o.X).And.EqualTo(7);
+        }
+    }
+
+    public class LambdaPropertyTest_ConstraintFollows : SyntaxTest
+    {
+        [SetUp]
+        public void SetUp()
+        {
+            parseTree = "<property X <greaterthan 5>>";
+            staticSyntax = Has.Property<LambdaPropertyTestClass>(o => o.X).GreaterThan(5);
+            inheritedSyntax = Helper().Property<LambdaPropertyTestClass>(o => o.X).GreaterThan(5);
+            builderSyntax = Builder().Property<LambdaPropertyTestClass>(o => o.X).GreaterThan(5);
+        }
+    }
+
+    public class LambdaPropertyTest_NotFollows : SyntaxTest
+    {
+        [SetUp]
+        public void SetUp()
+        {
+            parseTree = "<property X <not <greaterthan 5>>>";
+            staticSyntax = Has.Property<LambdaPropertyTestClass>(o => o.X).Not.GreaterThan(5);
+            inheritedSyntax = Helper().Property<LambdaPropertyTestClass>(o => o.X).Not.GreaterThan(5);
+            builderSyntax = Builder().Property<LambdaPropertyTestClass>(o => o.X).Not.GreaterThan(5);
+        }
+    }
+#endif
 
     public class LengthTest : SyntaxTest
     {
