@@ -66,7 +66,7 @@ namespace NUnit.TestData.TestCaseAttributeFixture
         }
 
         [TestCase(1)]
-        [TestCase(2, Ignore = true)]
+        [TestCase(2, Ignore = "Should not run")]
         [TestCase(3, IgnoreReason = "Don't Run Me!")]
         public void MethodWithIgnoredTestCases(int num)
         {
@@ -78,5 +78,19 @@ namespace NUnit.TestData.TestCaseAttributeFixture
         public void MethodWithExplicitTestCases(int num)
         {
         }
+        
+#if !PORTABLE
+        [TestCase(1, IncludePlatform = "Win")]
+        [TestCase(2, IncludePlatform = "Linux")]
+        public void MethodWithIncludePlatform(int num)
+        {
+        }
+
+        [TestCase(1, ExcludePlatform = "Win")]
+        [TestCase(2, ExcludePlatform = "Linux")]
+        public void MethodWitExcludePlatform(int num)
+        {
+        }
+#endif
     }
 }

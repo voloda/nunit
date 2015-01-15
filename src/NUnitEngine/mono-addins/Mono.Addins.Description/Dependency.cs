@@ -1,5 +1,10 @@
-﻿// ***********************************************************************
-// Copyright (c) 2011 Charlie Poole
+//
+// Dependency.cs
+//
+// Author:
+//   Lluis Sanchez Gual
+//
+// Copyright (C) 2007 Novell, Inc (http://www.novell.com)
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -19,42 +24,36 @@
 // LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-// ***********************************************************************
+//
 
 using System;
-using System.IO;
-using NUnit.Engine.Internal;
+using System.Xml.Serialization;
+using Mono.Addins.Serialization;
+using System.Xml;
 
-namespace NUnit.Engine.Services.ProjectLoaders
+namespace Mono.Addins.Description
 {
-    public class NUnitProjectLoader : IProjectLoader
-    {
-        #region IProjectLoader Members
-
-        public bool CanLoadFrom(string path)
-        {
-            return Path.GetExtension(path) == ".nunit";
-        }
-
-        public IProject LoadFrom(string path)
-        {
-            NUnitProject project = new NUnitProject();
-            project.Load(path);
-            return project;
-        }
-
-        public TestPackage GetTestPackage(string path)
-        {
-            return GetTestPackage(path, null);
-        }
-
-        public TestPackage GetTestPackage(string path, string configName)
-        {
-            NUnitProject project = new NUnitProject();
-            project.Load(path);
-            return project.GetTestPackage(configName);
-        }
-
-        #endregion
-    }
+	/// <summary>
+	/// Definition of an add-in dependency.
+	/// </summary>
+	[XmlInclude (typeof(AddinDependency))]
+	public abstract class Dependency: ObjectDescription
+	{
+		internal Dependency (XmlElement elem): base (elem)
+		{
+		}
+		
+		internal Dependency ()
+		{
+		}
+		
+		/// <summary>
+		/// Gets the display name of the dependency.
+		/// </summary>
+		/// <value>
+		/// The name.
+		/// </value>
+		public abstract string Name { get; }
+		internal abstract bool CheckInstalled (AddinRegistry registry);
+	}
 }
