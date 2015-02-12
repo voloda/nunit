@@ -1,5 +1,5 @@
 ﻿// ***********************************************************************
-// Copyright (c) 2011 Charlie Poole
+// Copyright (c) 2012 Charlie Poole
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -21,25 +21,21 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // ***********************************************************************
 
-using System;
-using System.Collections.Generic;
-using NUnit.Framework.Internal.Commands;
+using NUnit.Framework.Internal;
 
 namespace NUnit.Framework.Interfaces
 {
     /// <summary>
-    /// ICommandDecorator is implemented by attributes and other
-    /// objects able to decorate a TestCommand, usually by wrapping
-    /// it with an outer command.
+    /// The IApplyToContext interface is implemented by attributes
+    /// that want to make changes to the execution context before
+    /// a test is run.
     /// </summary>
-    public interface ICommandDecorator
+    public interface IApplyToContext
     {
         /// <summary>
-        /// Decorate a command, usually by wrapping it with another
-        /// command, and return the decorated command.
+        /// Apply changes to the execution context
         /// </summary>
-        /// <param name="command">The command to be decorated</param>
-        /// <returns>The decorated command</returns>
-        TestCommand Decorate(TestCommand command);
+        /// <param name="context">The execution context</param>
+        void ApplyToContext(TestExecutionContext context);
     }
 }

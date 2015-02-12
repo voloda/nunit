@@ -1,5 +1,5 @@
 ﻿// ***********************************************************************
-// Copyright (c) 2014 Charlie Poole
+// Copyright (c) 2011-2015 Charlie Poole
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -21,35 +21,46 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // ***********************************************************************
 
-using System.IO;
-using System.Xml;
+using System;
+using System.Collections.Generic;
+using NUnit.Framework.Internal.Commands;
 
-namespace NUnit.Engine
+namespace NUnit.Framework.Interfaces
 {
     /// <summary>
-    /// Common interface for objects that process and write out test results
+    /// ICommandWrapper is implemented by attributes and other
+    /// objects able to wrap a TestCommand with another command.
     /// </summary>
-    public interface IResultWriter
+    /// <remarks>
+    /// Attributes or other objects should implement one of the
+    /// derived interfaces, rather than this one, since they
+    /// indicate in which part of the command chain the wrapper
+    /// should be applied.
+    /// </remarks>
+    public interface ICommandWrapper
     {
         /// <summary>
-        /// Checks if the output path is writable. If the output is not
-        /// writable, this method should throw an exception.
+        /// Wrap a command and return the result.
         /// </summary>
-        /// <param name="outputPath"></param>
-        void CheckWritability(string outputPath);
+        /// <param name="command">The command to be wrapped</param>
+        /// <returns>The wrapped command</returns>
+        TestCommand Wrap(TestCommand command);
+    }
 
-        /// <summary>
-        /// Writes result to the specified output path.
-        /// </summary>
-        /// <param name="resultNode">XmlNode for the result</param>
-        /// <param name="outputPath">Path to which it should be written</param>
-        void WriteResultFile(XmlNode resultNode, string outputPath);
+    /// <summary>
+    /// Objects implementing this interface are used to wrap
+    /// the TestMethodCommand itself. They apply after SetUp
+    /// has been run and before TearDown.
+    /// </summary>
+    public interface IWrapTestMethod : ICommandWrapper
+    {
+    }
 
-        /// <summary>
-        /// Writes result to a TextWriter.
-        /// </summary>
-        /// <param name="resultNode">XmlNode for the result</param>
-        /// <param name="writer">TextWriter to which it should be written</param>
-        void WriteResultFile(XmlNode resultNode, TextWriter writer);
+    /// <summary>
+    /// Objects implementing this interface are used to wrap
+    /// the entire test, including SetUp and TearDown.
+    /// </summary>
+    public interface IWrapSetUpTearDown : ICommandWrapper
+    {
     }
 }

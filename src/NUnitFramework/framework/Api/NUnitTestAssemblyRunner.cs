@@ -26,6 +26,7 @@ using System.Collections;
 using System.IO;
 using System.Reflection;
 using System.Threading;
+using NUnit.Common;
 using NUnit.Framework.Interfaces;
 using NUnit.Framework.Internal;
 using NUnit.Framework.Internal.Execution;
@@ -275,13 +276,13 @@ namespace NUnit.Framework.Api
         {
             Context = new TestExecutionContext();
 
-            if (Settings.Contains(DriverSettings.DefaultTimeout))
-                Context.TestCaseTimeout = (int)Settings[DriverSettings.DefaultTimeout];
-            if (Settings.Contains(DriverSettings.StopOnError))
-                Context.StopOnError = (bool)Settings[DriverSettings.StopOnError];
+            if (Settings.Contains(PackageSettings.DefaultTimeout))
+                Context.TestCaseTimeout = (int)Settings[PackageSettings.DefaultTimeout];
+            if (Settings.Contains(PackageSettings.StopOnError))
+                Context.StopOnError = (bool)Settings[PackageSettings.StopOnError];
 
-            if (Settings.Contains(DriverSettings.WorkDirectory))
-                Context.WorkDirectory = (string)Settings[DriverSettings.WorkDirectory];
+            if (Settings.Contains(PackageSettings.WorkDirectory))
+                Context.WorkDirectory = (string)Settings[PackageSettings.WorkDirectory];
             else
                 Context.WorkDirectory = Env.DefaultWorkDirectory;
 
@@ -289,11 +290,11 @@ namespace NUnit.Framework.Api
             Context.Listener = listener;
 
 #if PARALLEL
-            int levelOfParallelization = GetLevelOfParallelization();
+            int levelOfParallelism = GetLevelOfParallelism();
 
-            if (levelOfParallelization > 0)
+            if (levelOfParallelism > 0)
             {
-                Context.Dispatcher = new ParallelWorkItemDispatcher(levelOfParallelization);
+                Context.Dispatcher = new ParallelWorkItemDispatcher(levelOfParallelism);
                 // Assembly does not have IApplyToContext attributes applied
                 // when the test is built, so  we do it here.
                 // TODO: Generalize this
@@ -338,18 +339,18 @@ namespace NUnit.Framework.Api
 
         private static int GetInitialSeed(IDictionary settings)
         {
-            return settings.Contains(DriverSettings.RandomSeed)
-                ? (int)settings[DriverSettings.RandomSeed]
+            return settings.Contains(PackageSettings.RandomSeed)
+                ? (int)settings[PackageSettings.RandomSeed]
                 : new Random().Next();
         }
 
 #if PARALLEL
-        private int GetLevelOfParallelization()
+        private int GetLevelOfParallelism()
         {
-            return Settings.Contains(DriverSettings.NumberOfTestWorkers)
-                ? (int)Settings[DriverSettings.NumberOfTestWorkers]
-                : (LoadedTest.Properties.ContainsKey(PropertyNames.LevelOfParallelization)
-                   ? (int)LoadedTest.Properties.Get(PropertyNames.LevelOfParallelization)
+            return Settings.Contains(PackageSettings.NumberOfTestWorkers)
+                ? (int)Settings[PackageSettings.NumberOfTestWorkers]
+                : (LoadedTest.Properties.ContainsKey(PropertyNames.LevelOfParallelism)
+                   ? (int)LoadedTest.Properties.Get(PropertyNames.LevelOfParallelism)
 #if NETCF
                    : 1);
 #else

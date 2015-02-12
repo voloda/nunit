@@ -1,5 +1,5 @@
-// ***********************************************************************
-// Copyright (c) 2014 Charlie Poole
+﻿// ***********************************************************************
+// Copyright (c) 2010 Charlie Poole
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -22,20 +22,20 @@
 // ***********************************************************************
 
 using System;
+using NUnit.Framework.Internal;
 
-namespace NUnit.Framework
+namespace NUnit.Framework.Interfaces
 {
     /// <summary>
-    /// LevelOfParallelizationAttribute is used to set the number of worker threads
-    /// that may be allocated by the framework for running tests.
+    /// The IApplyToTest interface is implemented by self-applying
+    /// attributes that modify the state of a test in some way.
     /// </summary>
-    [AttributeUsage( AttributeTargets.Assembly, AllowMultiple=false, Inherited=false )]
-    public sealed class LevelOfParallelizationAttribute : PropertyAttribute
+    public interface IApplyToTest
     {
         /// <summary>
-        /// Construct a LevelOfParallelizationAttribute.
+        /// Modifies a test as defined for the specific attribute.
         /// </summary>
-        /// <param name="level">The number of worker threads to be created by the framework.</param>
-        public LevelOfParallelizationAttribute( int level ) : base( level ) {  }
+        /// <param name="test">The test to modify</param>
+        void ApplyToTest(Test test);
     }
 }

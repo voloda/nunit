@@ -1,5 +1,5 @@
 ﻿// ***********************************************************************
-// Copyright (c) 2012 Charlie Poole
+// Copyright (c) 2014 Charlie Poole
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -21,19 +21,20 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // ***********************************************************************
 
-namespace NUnit.Framework.Internal
+using System;
+using System.Collections.Generic;
+using System.Text;
+using NUnit.Engine.Extensibility;
+
+namespace NUnit.Engine.Addins
 {
-    /// <summary>
-    /// The IApplyToContext interface is implemented by attributes
-    /// that want to make changes to the execution context before
-    /// a test is run.
-    /// </summary>
-    public interface IApplyToContext
+    class NUnit2ResultWriterFactory : IResultWriterFactory
     {
-        /// <summary>
-        /// Apply changes to the execution context
-        /// </summary>
-        /// <param name="context">The execution context</param>
-        void ApplyToContext(TestExecutionContext context);
+        public string Format { get { return "nunit2";  } }
+
+        public IResultWriter GetResultWriter(params object[] args)
+        {
+            return new NUnit2XmlResultWriter();
+        }
     }
 }

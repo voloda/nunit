@@ -1,5 +1,5 @@
 // ***********************************************************************
-// Copyright (c) 2011 Charlie Poole
+// Copyright (c) 2015 Charlie Poole
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -22,28 +22,46 @@
 // ***********************************************************************
 
 using System;
+using System.Collections;
 
-namespace NUnit.Engine
+namespace NUnit.Framework.Constraints
 {
     /// <summary>
-    /// The IProjectLoader interface is implemented by any class
-    /// that knows how to load projects in a specific format.
+    /// DictionaryContainsKeyConstraint is used to test whether a dictionary
+    /// contains an expected object as a key.
     /// </summary>
-    public interface IProjectLoader
+    public class DictionaryContainsKeyConstraint : CollectionContainsConstraint
     {
         /// <summary>
-        /// Returns true if the file indicated is one that this
-        /// loader knows how to load.
+        /// Construct a DictionaryContainsKeyConstraint
         /// </summary>
-        /// <param name="path">The path of the project file</param>
-        /// <returns>True if the loader knows how to load this file, otherwise false</returns>
-        bool CanLoadFrom( string path );
+        /// <param name="expected"></param>
+        public DictionaryContainsKeyConstraint(object expected)
+            : base(expected)
+        {
+            DisplayName = "ContainsKey";
+        }
 
         /// <summary>
-        /// Loads a project of a known format.
+        /// The Description of what this constraint tests, for
+        /// use in messages and in the ConstraintResult.
         /// </summary>
-        /// <param name="path">The path of the project file</param>
-        /// <returns>An IProject interface to the loaded project or null if the project cannot be loaded</returns>
-        IProject LoadFrom(string path);
+        public override string Description
+        {
+            get { return "dictionary containing key " + MsgUtils.FormatValue(Expected); }
+        }
+
+        /// <summary>
+        /// Test whether the expected key is contained in the dictionary
+        /// </summary>
+        protected override bool Matches(IEnumerable actual)
+        {
+            IDictionary dictionary = actual as IDictionary;
+
+            if (dictionary == null)
+                throw new ArgumentException("The actual value must be an IDictionary", "actual");
+
+            return base.Matches(dictionary.Keys);
+        }
     }
 }

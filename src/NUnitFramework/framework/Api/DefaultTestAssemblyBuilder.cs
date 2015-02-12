@@ -25,6 +25,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using NUnit.Common;
 using NUnit.Framework.Interfaces;
 using NUnit.Framework.Internal;
 using NUnit.Framework.Internal.Builders;
@@ -107,7 +108,7 @@ namespace NUnit.Framework.Api
 
             try
             {
-                var assembly = Load(assemblyName);
+                var assembly = AssemblyHelper.Load(assemblyName);
                 testAssembly = Build(assembly, assemblyName, options);
             }
             catch(Exception ex)
@@ -126,7 +127,7 @@ namespace NUnit.Framework.Api
 
             try
             {
-                IList fixtureNames = options[DriverSettings.LOAD] as IList;
+                IList fixtureNames = options[PackageSettings.LOAD] as IList;
                 IList fixtures = GetFixtures(assembly, fixtureNames);
 
                 testAssembly = BuildTestAssembly(assembly, assemblyPath, fixtures);
@@ -144,27 +145,6 @@ namespace NUnit.Framework.Api
         #endregion
 
         #region Helper Methods
-
-        private Assembly Load(string path)
-        {
-#if NETCF
-            return Assembly.LoadFrom(path);
-#elif SILVERLIGHT || PORTABLE
-            return Assembly.Load(path);
-#else
-            Assembly assembly = null;
-
-            // Throws if this isn't a managed assembly or if it was built
-            // with a later version of the same assembly. 
-            AssemblyName assemblyName = AssemblyName.GetAssemblyName(path);
-
-            assembly = Assembly.Load(assemblyName);
-
-            log.Info("Loaded assembly " + assembly.FullName);
-
-            return assembly;
-#endif
-        }
 
         private IList GetFixtures(Assembly assembly, IList names)
         {

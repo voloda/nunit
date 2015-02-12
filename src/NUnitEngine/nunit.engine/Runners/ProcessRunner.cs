@@ -66,21 +66,18 @@ namespace NUnit.Engine.Runners
             log.Info("Loading " + TestPackage.Name);
             Unload();
 
-            string frameworkSetting = TestPackage.GetSetting(RunnerSettings.RuntimeFramework, "");
-            RuntimeFramework = frameworkSetting != ""
-                ? RuntimeFramework.Parse(frameworkSetting)
-                : Services.RuntimeFrameworkSelector.SelectRuntimeFramework(TestPackage);
-
-            bool useX86Agent = TestPackage.GetSetting(RunnerSettings.RunAsX86, false);
-            bool enableDebug = TestPackage.GetSetting("AgentDebug", false);
-            bool verbose = TestPackage.GetSetting("Verbose", false);
-            string agentArgs = string.Empty;
-            if (enableDebug) agentArgs += " --pause";
-            if (verbose) agentArgs += " --verbose";
-
             try
             {
-                CreateAgentAndRunner(enableDebug, agentArgs, useX86Agent);
+                if (_agent == null)
+                {
+                    _agent = Services.TestAgency.GetAgent(TestPackage, 30000);
+
+                    if (_agent == null)
+                        throw new Exception("Unable to acquire remote process agent");
+                }
+
+                if (_remoteRunner == null)
+                    _remoteRunner = _agent.CreateRunner(TestPackage);
 
                 return _remoteRunner.Load();
             }
@@ -148,29 +145,6 @@ namespace NUnit.Engine.Runners
                 _agent.Stop();
                 _agent = null;
             }
-        }
-
-        #endregion
-
-        #region Helper Methods
-
-        private void CreateAgentAndRunner(bool enableDebug, string agentArgs, bool useX86Agent)
-        {
-            if (_agent == null)
-            {
-                _agent = Services.TestAgency.GetAgent(
-                    RuntimeFramework,
-                    30000,
-                    enableDebug,
-                    agentArgs,
-                    useX86Agent);
-
-                if (_agent == null)
-                    throw new Exception("Unable to acquire remote process agent");
-            }
-
-            if (_remoteRunner == null)
-                _remoteRunner = _agent.CreateRunner(TestPackage);
         }
 
         #endregion

@@ -9,7 +9,7 @@
 	<PropertyGroup Label="Common Properties">
 		<ProjectName>$(MSBuildProjectName)</ProjectName>
 		<PackageVersion>3.0.0</PackageVersion>
-		<PackageModifier>-alpha-4</PackageModifier>
+		<PackageModifier>-alpha-5b</PackageModifier>
 		<PackageName>$(ProjectName)-$(PackageVersion)$(PackageModifier)</PackageName>
 	</PropertyGroup>
 
@@ -252,7 +252,7 @@
 			DependsOnTargets="TestAllFrameworks;TestEngine;TestAddins;TestV2Driver;TestConsole" />
 	  
 	<Target Name="Test" Label="Run tests for the current framework, engine and console"
-			DependsOnTargets="TestFramework;TestEngine;TestV2Driver;TestConsole" />
+			DependsOnTargets="TestFramework;TestEngine;TestAddins;TestV2Driver;TestConsole" />
 
 	<Target Name="TestAllFrameworks"
 			Label="Test the framework for the current config and all runtimes">
@@ -312,7 +312,7 @@
 		<Message Text="******************************************************************" />
 
 		<Exec WorkingDirectory="$(EngineBuildDir)"
-			  Command='$(ManagedExeLauncher) $(ConsoleRunner) addins/addin-tests.dll "-result:$(ResultDir)/AddinResult.xml;format=$(ResultFormat)" $(TestOptions)'
+			  Command='$(ManagedExeLauncher) $(ConsoleRunner) addins/tests/addin-tests.dll "-result:$(ResultDir)/AddinResult.xml;format=$(ResultFormat)" $(TestOptions)'
 			  ContinueOnError="$(ContinueOnFailure)"/>
 
 	</Target>
@@ -326,7 +326,7 @@
 		<Message Text="******************************************************************" />
 		
 		<Exec WorkingDirectory="$(EngineBuildDir)"
-			Command='$(ManagedExeLauncher) $(ConsoleRunner) v2-driver/tests/nunit.v2.driver.tests.dll "-result:$(ResultDir)/V2DriverResult.xml;format=$(ResultFormat)"  $(TestOptions)'
+			Command='$(ManagedExeLauncher) $(ConsoleRunner) addins/v2-tests/nunit.v2.driver.tests.dll "-result:$(ResultDir)/V2DriverResult.xml;format=$(ResultFormat)"  $(TestOptions)'
 			ContinueOnError="$(ContinueOnFailure)"/>
 		
 	</Target>
@@ -376,7 +376,7 @@
 	<!-- *********************************************************************** -->
 	
 	<Target Name="Package" Label="Packages the source code and binaries already built"
-		DependsOnTargets="PackageSource;PackageBinaries;PackageNuGet">
+		DependsOnTargets="@(AllPackages)">
 	</Target>
 
 	<Target Name="PackageSource" Label="Packages the source code as a zip" DependsOnTargets="_CreateProjectPackageDir">
@@ -437,18 +437,18 @@
 
 	</Target>
 
-	<Target Name="PackageFrameworkInstall" Label="Creates the MSI installer for the NUnit.Framework">
+	<Target Name="PackageFrameworkMsi" Label="Creates the MSI installer for the NUnit.Framework">
 		<MSBuild Targets="Build" Projects="$(InstallDir)\framework\nunit-framework.wixproj"
-			Properties="Configuration=$(Configuration)" />		
+			Properties="Configuration=$(Configuration); Platform=x86; OutputPath=$(ProjectPackageDir)" />
 	</Target>
 
-	<Target Name="PackageRunnersInstall" Label="Creates the MSI installer for the NUnit console runner and tools">
+	<Target Name="PackageConsoleMsi" Label="Creates the MSI installer for the NUnit console runner and engine">
 		<MSBuild Targets="Build" Projects="$(InstallDir)\runners\nunit-runners.wixproj"
-			Properties="Configuration=$(Configuration)" />
+			Properties="Configuration=$(Configuration); Platform=x86; OutputPath=$(ProjectPackageDir)" />
 	</Target>
 
-	<Target Name="PackageAllInstalls" Label="Creates all of the MSI installers for NUnit"
-					DependsOnTargets="PackageFrameworkInstall;PackageRunnersInstall">
+	<Target Name="PackageAllMsis" Label="Creates all of the MSI installers for NUnit"
+					DependsOnTargets="PackageFrameworkMsi;PackageConsoleMsi">
 	</Target>
 	
 	<Target Name="_CreatePackageImage" DependsOnTargets="_CleanPackageWorkingDir">
@@ -475,6 +475,13 @@
 	<!--                       Lists For Use by Targets                          -->
 	<!-- *********************************************************************** -->
 
+	<ItemGroup Label ="Targets for Packaging">
+		<AllPackages Include="PackageSource" />
+	    <AllPackages Include="PackageBinaries" />
+	    <AllPackages Include="PackageNuGet" />
+	    <AllPackages Include="PackageAllMsis" Condition="$(IsWindows)" />
+	</ItemGroup>
+	
 	<ItemGroup Label="Files for packaging in root">
 		<RootFiles Include="LICENSE.txt;NOTICES.txt;CHANGES.txt" />
 	</ItemGroup>
@@ -491,6 +498,8 @@
 		<BinFiles Include="$(ConfigurationBuildDir)\ConsoleTests.nunit" />
 		<BinFiles Include="$(ConfigurationBuildDir)\NUnit2TestResult.xsd" />
 		<BinFiles Include="$(ConfigurationBuildDir)\TextSummary.xslt" />
+		<BinFiles Include="$(ConfigurationBuildDir)\nunit.engine.addins" />
+		<BinFiles Include="$(ConfigurationBuildDir)\nunit.engine.addin.xml" />
 
 		<!-- Extra files for Silverlight build -->
 		<BinFiles Include="$(ConfigurationBuildDir)\**\AppManifest.xaml" />
@@ -509,7 +518,7 @@
 		<SupportedFrameworks Include="net-2.0" />
 		<!--<SupportedFrameworks Condition="$(IsWindows)" Include="netcf-3.5" />-->
 		<SupportedFrameworks Condition="$(IsWindows)" Include="sl-5.0" />
-		<SupportedFrameworks Include="portable" />
+		<SupportedFrameworks Condition="$(IsWindows)" Include="portable" />
 	</ItemGroup>
 	
 	<ItemGroup Label="Projects for building the framework">
@@ -530,18 +539,22 @@
 		<EngineProjects Include="$(EngineSrcDir)\mono-addins\Mono.Addins.csproj" />
 		<!-- The engine and agent -->
 		<EngineProjects Include="$(EngineSrcDir)\nunit.engine.api\nunit.engine.api.csproj" />
-		<EngineProjects Include="$(EngineSrcDir)\nunit.v2.driver\nunit.v2.driver.csproj" />
 		<EngineProjects Include="$(EngineSrcDir)\nunit.engine\nunit.engine.csproj" />
 		<EngineProjects Include="$(EngineSrcDir)\nunit-agent\nunit-agent.csproj" />
 		<EngineProjects Include="$(EngineSrcDir)\nunit-agent\nunit-agent-x86.csproj" />
+
 		<!-- Test Assemblies -->
 		<EngineProjects Include="$(EngineSrcDir)\nunit.engine.tests\nunit.engine.tests.csproj" />
-		<EngineProjects Include="$(EngineSrcDir)\nunit.v2.driver.tests\nunit.v2.driver.tests.csproj" />
+
 		<!-- Addins -->
 		<EngineProjects Include="$(AddinSrcDir)\nunit-project-loader\nunit-project-loader.csproj" />
 		<EngineProjects Include="$(AddinSrcDir)\vs-project-loader\vs-project-loader.csproj" />
+		<EngineProjects Include="$(AddinSrcDir)\nunit-v2-result-writer\nunit-v2-result-writer.csproj" />
+		<EngineProjects Include="$(AddinSrcDir)\nunit.v2.driver\nunit.v2.driver.csproj" />
+
 		<!-- Addin tests -->
 		<EngineProjects Include="$(AddinSrcDir)\addin-tests\addin-tests.csproj" />
+		<EngineProjects Include="$(AddinSrcDir)\nunit.v2.driver.tests\nunit.v2.driver.tests.csproj" />
 
 	</ItemGroup>
 

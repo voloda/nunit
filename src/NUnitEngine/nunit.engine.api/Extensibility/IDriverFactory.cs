@@ -1,5 +1,5 @@
 ﻿// ***********************************************************************
-// Copyright (c) 2011 Charlie Poole
+// Copyright (c) 2009-2014 Charlie Poole
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -22,19 +22,31 @@
 // ***********************************************************************
 
 using System;
+using System.Collections.Generic;
+using System.Reflection;
 
-namespace NUnit.Engine
+namespace NUnit.Engine.Extensibility
 {
-    public interface IRuntimeFrameworkSelector
+    /// <summary>
+    /// Interface implemented by a Type that knows how to create a driver for a test assembly.
+    /// </summary>
+    public interface IDriverFactory
     {
         /// <summary>
-        /// Selects a target runtime framework for a TestPackage based on
-        /// the settings in the package and the assemblies themselves.
-        /// The package RuntimeFramework setting may be updated as a 
-        /// result and the selected runtime is returned.
+        /// Gets a flag indicating whether a given AssemblyName
+        /// represents a test framework supported by this factory.
         /// </summary>
-        /// <param name="package">A TestPackage</param>
-        /// <returns>The selected RuntimeFramework</returns>
-        RuntimeFramework SelectRuntimeFramework(TestPackage package);
+        bool IsSupportedFramework(AssemblyName refAssembly);
+
+        /// <summary>
+        /// Gets a driver for a given test assembly and framework
+        /// which it is already known to reference.
+        /// </summary>
+        /// <param name="domain">The domain in which the assembly will be loaded</param>
+        /// <param name="frameworkAssemblyName">The name of the test framework reference</param>
+        /// <param name="assemblyPath">The path to the test assembly</param>
+        /// <param name="settings">A dictionarly of settings to be used for this assembly</param>
+        /// <returns></returns>
+        IFrameworkDriver GetDriver(AppDomain domain, string frameworkAssemblyName, string assemblyPath, IDictionary<string, object> settings);
     }
 }

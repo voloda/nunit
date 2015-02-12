@@ -1,5 +1,5 @@
 ﻿// ***********************************************************************
-// Copyright (c) 2010 Charlie Poole
+// Copyright (c) 2014 Charlie Poole
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -22,19 +22,14 @@
 // ***********************************************************************
 
 using System;
+using System.Collections.Generic;
+using System.Text;
+using NUnit.Engine.Extensibility;
 
-namespace NUnit.Framework.Internal
+namespace NUnit.Engine
 {
-    /// <summary>
-    /// The IApplyToTest interface is implemented by self-applying
-    /// attributes that modify the state of a test in some way.
-    /// </summary>
-    public interface IApplyToTest
+    public interface IDriverService
     {
-        /// <summary>
-        /// Modifies a test as defined for the specific attribute.
-        /// </summary>
-        /// <param name="test">The test to modify</param>
-        void ApplyToTest(Test test);
+        IFrameworkDriver GetDriver(AppDomain domain, string assemblyPath, IDictionary<string, object> settings);
     }
 }

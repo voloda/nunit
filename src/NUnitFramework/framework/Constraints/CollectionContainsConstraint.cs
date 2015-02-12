@@ -1,5 +1,5 @@
 // ***********************************************************************
-// Copyright (c) 2007 Charlie Poole
+// Copyright (c) 2007-2015 Charlie Poole
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -31,8 +31,6 @@ namespace NUnit.Framework.Constraints
     /// </summary>
     public class CollectionContainsConstraint : CollectionItemsEqualConstraint
     {
-        private readonly object expected;
-
         /// <summary>
         /// Construct a CollectionContainsConstraint
         /// </summary>
@@ -40,7 +38,7 @@ namespace NUnit.Framework.Constraints
         public CollectionContainsConstraint(object expected)
             : base(expected)
         {
-            this.expected = expected;
+            this.Expected = expected;
             this.DisplayName = "Contains";
         }
 
@@ -50,8 +48,13 @@ namespace NUnit.Framework.Constraints
         /// </summary>
         public override string Description
         {
-            get { return "collection containing " + MsgUtils.FormatValue(expected); }
+            get { return "collection containing " + MsgUtils.FormatValue(Expected); }
         }
+
+        /// <summary>
+        /// Gets the expected object
+        /// </summary>
+        protected object Expected { get; private set; }
 
         /// <summary>
         /// Test whether the expected item is contained in the collection
@@ -61,7 +64,7 @@ namespace NUnit.Framework.Constraints
         protected override bool Matches(IEnumerable actual)
         {
             foreach (object obj in actual)
-                if (ItemsEqual(obj, expected))
+                if (ItemsEqual(obj, Expected))
                     return true;
 
             return false;
