@@ -35,6 +35,8 @@ using System.Reflection;
 [assembly: AssemblyTitle("NUnitLite Runner Silverlight 5.0")]
 #elif NETCF_3_5
 [assembly: AssemblyTitle("NUnitLite Runner CF 3.5")]
+#elif ANDROID
+[assembly: AssemblyTitle("NUnitLite Runner Android")]
 #else
 [assembly: AssemblyTitle("NUnitLite Runner")]
 #endif

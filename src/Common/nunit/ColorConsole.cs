@@ -42,13 +42,13 @@ namespace NUnit.Common
         /// <param name="style">The color style to use.</param>
         public ColorConsole(ColorStyle style)
         {
-#if !SILVERLIGHT && !NETCF
+#if !SILVERLIGHT && !NETCF && !ANDROID
             if (ColorConsole.Enabled)
                 Console.ForegroundColor = GetColor(style);
 #endif
         }
 
-#if !SILVERLIGHT && !NETCF
+#if !SILVERLIGHT && !NETCF && !ANDROID
         /// <summary>
         /// By using styles, we can keep everything consistent
         /// </summary>
@@ -158,7 +158,7 @@ namespace NUnit.Common
         /// </summary>
         public void Dispose()
         {
-#if !SILVERLIGHT && !NETCF
+#if !SILVERLIGHT && !NETCF && !ANDROID
             if (ColorConsole.Enabled)
                 Console.ResetColor();
 #endif

@@ -469,7 +469,9 @@ namespace Mono.Options
 		}
 	}
 
+#if !ANDROID
 	[Serializable]
+#endif
 	public class OptionException : Exception {
 		private string option;
 
@@ -501,7 +503,7 @@ namespace Mono.Options
 			get {return this.option;}
 		}
 
-#if !NETCF && !SILVERLIGHT && !PORTABLE
+#if !NETCF && !SILVERLIGHT && !PORTABLE && !ANDROID
 		[SecurityPermission (SecurityAction.LinkDemand, SerializationFormatter = true)]
 		public override void GetObjectData (SerializationInfo info, StreamingContext context)
 		{
