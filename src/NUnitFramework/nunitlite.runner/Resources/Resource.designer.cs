@@ -61,7 +61,10 @@ namespace nunitlite.runnerandroid
 		{
 			
 			// aapt resource value: 0x7f050000
-			public const int myButton = 2131034112;
+			public const int buttonRun = 2131034112;
+			
+			// aapt resource value: 0x7f050001
+			public const int textOutput = 2131034113;
 			
 			static Id()
 			{
@@ -77,7 +80,7 @@ namespace nunitlite.runnerandroid
 		{
 			
 			// aapt resource value: 0x7f030000
-			public const int Main = 2130903040;
+			public const int TestSuite = 2130903040;
 			
 			static Layout()
 			{
@@ -92,11 +95,8 @@ namespace nunitlite.runnerandroid
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f040001
-			public const int app_name = 2130968577;
-			
 			// aapt resource value: 0x7f040000
-			public const int hello = 2130968576;
+			public const int app_name = 2130968576;
 			
 			static String()
 			{

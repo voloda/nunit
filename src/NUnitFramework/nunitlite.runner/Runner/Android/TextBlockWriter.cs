@@ -1,4 +1,4 @@
-﻿// ***********************************************************************
+// ***********************************************************************
 // Copyright (c) 2012 Charlie Poole
 //
 // Permission is hereby granted, free of charge, to any person obtaining
@@ -21,14 +21,13 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // ***********************************************************************
 
-#if SILVERLIGHT || ANDROID
+#if ANDROID
+using Android.Widget;
 using System;
 using System.Diagnostics;
 using System.IO;
-using System.Windows.Controls;
-using System.Windows.Documents;
 
-namespace NUnitLite.Runner.Silverlight
+namespace NUnitLite.Runner.Android
 {
     /// <summary>
     /// TextBlockWriter is a TextWriter that sends it's 
@@ -36,30 +35,16 @@ namespace NUnitLite.Runner.Silverlight
     /// </summary>
     public class TextBlockWriter : TextWriter
     {
-#if SILVERLIGHT
-        private TextBlock textBlock;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TextBlockWriter"/> class.
-        /// </summary>
-        /// <param name="textBlock">The text block.</param>
-        public TextBlockWriter(TextBlock textBlock)
-        {
-            this.textBlock = textBlock;
-        }
-#endif
-#if ANDROID
         private EditText textBlock;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TextBlockWriter"/> class.
         /// </summary>
         /// <param name="textBlock">The text block.</param>
-        public TextBlockWriter(TextBlock textBlock)
+        public TextBlockWriter(EditText textBlock)
         {
             this.textBlock = textBlock;
         }
-#endif
 
         /// <summary>
         /// Writes a character to the text stream.
@@ -103,8 +88,8 @@ namespace NUnitLite.Runner.Silverlight
         /// </exception>
         public override void WriteLine(string value)
         {
-            textBlock.Inlines.Add(value);
-            textBlock.Inlines.Add(new LineBreak());
+            Write(value);
+            Write(Environment.NewLine);
             Debug.WriteLine(value);
         }
 
