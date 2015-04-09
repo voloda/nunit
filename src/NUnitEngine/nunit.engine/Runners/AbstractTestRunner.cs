@@ -256,10 +256,14 @@ namespace NUnit.Engine.Runners
 
         protected bool IsProjectPackage(TestPackage package)
         {
+#if MINI_ENGINE
+            return false;
+#else
             return package != null
                 && package.FullName != null
                 && package.FullName != string.Empty
                 && Services.ProjectService.CanLoadFrom(package.FullName);
+#endif
         }
 
         private void EnsurePackageIsLoaded()

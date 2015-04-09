@@ -26,9 +26,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Text;
-using Mono.Addins;
 using NUnit.Engine.Drivers;
 using NUnit.Engine.Extensibility;
+
+#if !MINI_ENGINE
+using Mono.Addins;
+#endif
 
 namespace NUnit.Engine.Services
 {
@@ -86,8 +89,10 @@ namespace NUnit.Engine.Services
         {
             _factories.Add(new NUnit3DriverFactory());
 
+#if !MINI_ENGINE
             foreach (IDriverFactory factory in AddinManager.GetExtensionObjects<IDriverFactory>())
                 _factories.Add(factory);
+#endif
         }
 
         public void UnloadService()

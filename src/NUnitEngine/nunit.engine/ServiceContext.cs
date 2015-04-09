@@ -86,6 +86,8 @@ namespace NUnit.Engine
         #endregion
 
         #region RecentFilesService
+
+#if !MINI_ENGINE
         private IRecentFiles _recentFiles;
         public IRecentFiles RecentFiles
         {
@@ -97,10 +99,13 @@ namespace NUnit.Engine
                 return _recentFiles;
             }
         }
+#endif
+
         #endregion
 
         #region RuntimeFrameworkSelector
 
+#if !MINI_ENGINE
         // Note: the engine uses the RuntimeFrameworkService directly
         // while runners only have access to IRuntimeFrameworkService.
         private RuntimeFrameworkService _runtimeService;
@@ -114,6 +119,7 @@ namespace NUnit.Engine
                 return _runtimeService;
             }
         }
+#endif
 
         #endregion
 
@@ -151,6 +157,7 @@ namespace NUnit.Engine
 
         #region TestAgency
 
+#if !MINI_ENGINE
         private TestAgency _agency;
         public TestAgency TestAgency
         {
@@ -162,10 +169,12 @@ namespace NUnit.Engine
                 return _agency;
             }
         }
+#endif
 
         #endregion
 
         #region ProjectService
+
         private ProjectService _projectService;
         public ProjectService ProjectService
         {
@@ -177,6 +186,7 @@ namespace NUnit.Engine
                 return _projectService;
             }
         }
+
         #endregion
 
         #endregion

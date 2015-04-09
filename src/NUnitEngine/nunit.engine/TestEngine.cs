@@ -25,9 +25,12 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
-using Mono.Addins;
 using NUnit.Engine.Internal;
 using NUnit.Engine.Services;
+
+#if !MINI_ENGINE
+using Mono.Addins;
+#endif
 
 namespace NUnit.Engine
 {
@@ -85,6 +88,7 @@ namespace NUnit.Engine
         /// </summary>
         public void Initialize()
         {
+#if !MINI_ENGINE
             if (!AddinManager.IsInitialized)
             {
                 // Pass in the current nunit.engine assembly because mono.addins uses the executing assembly by
@@ -92,6 +96,7 @@ namespace NUnit.Engine
                 AddinManager.Initialize(Assembly.GetExecutingAssembly(), NUnitConfiguration.ApplicationDirectory);
                 AddinManager.Registry.Update(null);
             }
+#endif
 
             SettingsService settingsService = new SettingsService(true);
 
@@ -105,6 +110,11 @@ namespace NUnit.Engine
             }
 
             this.Services.Add(settingsService);
+#if MINI_ENGINE
+            this.Services.Add(new DomainManager());
+            this.Services.Add(new InProcessTestRunnerFactory());
+            this.Services.Add(new DriverService());
+#else
             this.Services.Add(new RecentFilesService());
             this.Services.Add(new DomainManager());
             this.Services.Add(new ProjectService());
@@ -113,6 +123,7 @@ namespace NUnit.Engine
             this.Services.Add(new DriverService());
             this.Services.Add(new TestAgency());
             this.Services.Add(new ResultService());
+#endif
 
             this.Services.ServiceManager.InitializeServices();
         }

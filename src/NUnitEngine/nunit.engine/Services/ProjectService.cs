@@ -23,8 +23,11 @@
 
 using System.Collections.Generic;
 using NUnit.Common;
-using Mono.Addins;
 using NUnit.Engine.Extensibility;
+
+#if !MINI_ENGINE
+using Mono.Addins;
+#endif
 
 namespace NUnit.Engine.Services
 {
@@ -110,8 +113,10 @@ namespace NUnit.Engine.Services
             {
                 _isInitialized = true;
 
+#if !MINI_ENGINE
                 foreach (IProjectLoader loader in AddinManager.GetExtensionObjects<IProjectLoader>())
                     _loaders.Add(loader);
+#endif
             }
         }
 
