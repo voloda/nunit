@@ -373,7 +373,10 @@ namespace NUnit.Framework.Internal
         /// <value>The assert count.</value>
         internal int AssertCount
         {
-            get { return _assertCount; }
+            get
+            {
+                OutWriter.WriteLine("aa" + Thread.CurrentThread.ManagedThreadId); return _assertCount;
+            }
         }
 
         /// <summary>
@@ -478,6 +481,7 @@ namespace NUnit.Framework.Internal
         /// </summary>
         public void IncrementAssertCount()
         {
+            OutWriter.WriteLine("baa" + Thread.CurrentThread.ManagedThreadId);
             Interlocked.Increment(ref _assertCount);
         }
 
@@ -486,6 +490,7 @@ namespace NUnit.Framework.Internal
         /// </summary>
         public void IncrementAssertCount(int count)
         {
+            OutWriter.WriteLine("caa" + Thread.CurrentThread.ManagedThreadId);
             // TODO: Temporary implementation
             while (count-- > 0)
                 Interlocked.Increment(ref _assertCount);

@@ -133,7 +133,11 @@ namespace NUnit.Framework.Internal
         /// <returns></returns>
         public object[] GetEnums(int count, Type enumType)
         {
+#if NET_4_5 || CORECLR
+            if (!enumType.GetTypeInfo().IsEnum)
+#else
             if (!enumType.IsEnum)
+#endif
                 throw new ArgumentException(string.Format("The specified type: {0} was not an enum", enumType));
 
             Array values = TypeHelper.GetEnumValues(enumType);
@@ -171,6 +175,6 @@ namespace NUnit.Framework.Internal
 
             return ivals;
         }
-        #endregion
+#endregion
     }
 }

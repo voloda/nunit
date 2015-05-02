@@ -55,8 +55,14 @@ namespace NUnit.Framework.Internal.Builders
             // them with arguments to determine the specific type.
             // TODO: What about automatic fixtures? Should there
             // be some kind of error shown?
+#if CORECLR
+            if (type.GetTypeInfo().IsGenericTypeDefinition)
+#else
             if (type.IsGenericTypeDefinition)
+#endif
+            {
                 return false;
+            }
 
             return Reflect.HasMethodWithAttribute(type, typeof(IImplyFixture));
         }
@@ -102,9 +108,9 @@ namespace NUnit.Framework.Internal.Builders
                 return fixture;
             }
         }
-        #endregion
+#endregion
 
-        #region Helper Methods
+#region Helper Methods
 
         private Test BuildMultipleFixtures(Type type, IFixtureBuilder[] attrs)
         {
@@ -141,6 +147,6 @@ namespace NUnit.Framework.Internal.Builders
             return attrs;
         }
 
-        #endregion
+#endregion
     }
 }

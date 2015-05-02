@@ -58,8 +58,11 @@ namespace NUnit.Framework.Internal
         {
             if (type.IsGenericParameter)
                 return type.Name;
-
+#if CORECLR || NET_4_5
+            if (type.GetTypeInfo().IsGenericType)
+#else
             if (type.IsGenericType)
+#endif
             {
                 string name = type.FullName;
                 int index = name.IndexOf('[');
@@ -187,9 +190,13 @@ namespace NUnit.Framework.Internal
                 if (type1 == typeof(sbyte)) return type1;
                 if (type2 == typeof(sbyte)) return type2;
             }
-
-            if ( type1.IsAssignableFrom( type2 ) ) return type1;
-            if ( type2.IsAssignableFrom( type1 ) ) return type2;
+#if CORECLR || NET_4_5
+            if ( type1.GetTypeInfo().IsAssignableFrom( type2.GetTypeInfo()) ) return type1;
+            if ( type2.GetTypeInfo().IsAssignableFrom( type1.GetTypeInfo()) ) return type2;
+#else
+            if (type1.IsAssignableFrom(type2)) return type1;
+            if (type2.IsAssignableFrom(type1)) return type2;
+#endif
 
             return TypeHelper.NonmatchingType;
         }

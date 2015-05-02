@@ -1,3 +1,4 @@
+using System.Threading;
 #if NET_4_0 || NET_4_5
 using System;
 using System.Threading.Tasks;
@@ -220,7 +221,9 @@ namespace NUnit.TestData
 
         private static Task<int> ReturnOne()
         {
-            return Task.Run(() => 1);
+            return Task.Run(() => {Thread.SpinWait(10000000);
+                                      return 1;
+            });
         }
 
         private static Task<int> ThrowException()
