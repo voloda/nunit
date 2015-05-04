@@ -49,9 +49,14 @@ namespace NUnit.Framework.Constraints
         {
             get
             {
+#if CORECLR
+                // TODO: how to extract?
+                return "value matching a predicate";
+#else
                 return predicate.Method.Name.StartsWith("<")
                     ? "value matching lambda expression"
                     : "value matching " + predicate.Method.Name;
+#endif
             }
         }
 
