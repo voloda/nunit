@@ -22,7 +22,6 @@
 // ***********************************************************************
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 
@@ -140,11 +139,8 @@ namespace NUnit.Framework.Internal
         /// <returns>An instance of the Type</returns>
         public static object Construct(Type type)
         {
-#if CORECLR || NET_4_5
-            ConstructorInfo ctor = type.GetTypeInfo().GetConstructor(EmptyTypes);
-#else
             ConstructorInfo ctor = type.GetConstructor(EmptyTypes);
-#endif
+
             if (ctor == null)
                 throw new InvalidTestFixtureException(type.FullName + " does not have a default constructor");
 
@@ -162,11 +158,7 @@ namespace NUnit.Framework.Internal
             if (arguments == null) return Construct(type);
 
             Type[] argTypes = GetTypeArray(arguments);
-#if CORECLR
-            ConstructorInfo ctor = type.GetTypeInfo().GetConstructor(argTypes);
-#else
             ConstructorInfo ctor = type.GetConstructor(argTypes);
-#endif
 
             if (ctor == null)
                 throw new InvalidTestFixtureException(type.FullName + " does not have a suitable constructor");

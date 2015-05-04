@@ -88,7 +88,11 @@ namespace NUnit.Framework.Internal.Commands
 
         private static bool IsStaticClass(Type type)
         {
+#if CORECLR
+            return type.GetTypeInfo().IsAbstract && type.GetTypeInfo().IsSealed;
+#else
             return type.IsAbstract && type.IsSealed;
+#endif
         }
     }
 }

@@ -23,6 +23,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Threading;
 using NUnit.Framework.Internal.Commands;
 using NUnit.Framework.Interfaces;
@@ -318,7 +319,11 @@ namespace NUnit.Framework.Internal.Execution
 
         private static bool IsStaticClass(Type type)
         {
+#if CORECLR
+            return type.GetTypeInfo().IsAbstract && type.GetTypeInfo().IsSealed;
+#else
             return type.IsAbstract && type.IsSealed;
+#endif
         }
 
         #endregion

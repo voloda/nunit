@@ -22,6 +22,7 @@
 // ***********************************************************************
 
 using System;
+using System.Reflection;
 using NUnit.Framework.Interfaces;
 
 namespace NUnit.Framework.Internal.Builders
@@ -45,12 +46,19 @@ namespace NUnit.Framework.Internal.Builders
         /// <returns>True if the fixture can be built, false if not</returns>
         public bool CanBuildFrom(Type type)
         {
+#if CORECLR
+            if (type.GetTypeInfo().IsAbstract && !type.GetTypeInfo().IsSealed)
+                return false;
+
+            if (type.GetTypeInfo().IsDefined(typeof(IFixtureBuilder), true))
+                return true;
+#else
             if (type.IsAbstract && !type.IsSealed)
                 return false;
 
             if (type.IsDefined(typeof(IFixtureBuilder), true))
                 return true;
-
+#endif
             // Generics must have an attribute in order to provide
             // them with arguments to determine the specific type.
             // TODO: What about automatic fixtures? Should there
@@ -77,9 +85,14 @@ namespace NUnit.Framework.Internal.Builders
             try
             {
                 IFixtureBuilder[] attrs = GetFixtureBuilderAttributes(type);
-
+#if CORECLR
+                if (type.GetTypeInfo().IsGenericType)
+#else
                 if (type.IsGenericType)
+#endif
+                {
                     return BuildMultipleFixtures(type, attrs);
+                }
 
                 switch (attrs.Length)
                 {
@@ -136,12 +149,21 @@ namespace NUnit.Framework.Internal.Builders
 
             while (type != null)
             {
+#if CORECLR
+                attrs = (IFixtureBuilder[])type.GetTypeInfo().GetCustomAttributes(typeof(IFixtureBuilder), false);
+
+                if (attrs.Length > 0)
+                    return attrs;
+
+                type = type.GetTypeInfo().BaseType;
+#else
                 attrs = (IFixtureBuilder[])type.GetCustomAttributes(typeof(IFixtureBuilder), false);
 
                 if (attrs.Length > 0)
                     return attrs;
 
                 type = type.BaseType;
+#endif
             }
 
             return attrs;

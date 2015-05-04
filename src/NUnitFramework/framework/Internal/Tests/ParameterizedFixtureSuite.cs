@@ -22,6 +22,7 @@
 // ***********************************************************************
 
 using System;
+using System.Reflection;
 
 namespace NUnit.Framework.Internal
 {
@@ -59,7 +60,11 @@ namespace NUnit.Framework.Internal
         {
             get
             {
+#if CORECLR
+                if (this.ParameterizedType.GetTypeInfo().ContainsGenericParameters)
+#else
                 if (this.ParameterizedType.ContainsGenericParameters)
+#endif
                     return "GenericFixture";
                 
                 return "ParameterizedFixture";

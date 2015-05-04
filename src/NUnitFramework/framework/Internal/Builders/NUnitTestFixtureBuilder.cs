@@ -75,18 +75,20 @@ namespace NUnit.Framework.Internal.Builders
 
             if (fixture.RunState != RunState.NotRunnable)
                 CheckTestFixtureIsValid(fixture);
-
+#if CORECLR
+            fixture.ApplyAttributesToTest(type.GetTypeInfo());
+#else
             fixture.ApplyAttributesToTest(type);
-
+#endif
 
             AddTestCases(type);
 
             return this.fixture;
         }
 
-        #endregion
+#endregion
 
-        #region Other Public Methods
+#region Other Public Methods
 
         /// <summary>
         /// Overload of BuildFrom called by TestFixtureAttribute. Builds
@@ -103,8 +105,11 @@ namespace NUnit.Framework.Internal.Builders
             if (attr != null)
             {
                 arguments = attr.Arguments;
-
+#if CORECLR
+                if (type.GetTypeInfo().ContainsGenericParameters)
+#else
                 if (type.ContainsGenericParameters)
+#endif
                 {
                     Type[] typeArgs = attr.TypeArgs;
                     if (typeArgs.Length == 0)
@@ -150,17 +155,19 @@ namespace NUnit.Framework.Internal.Builders
 
             if (fixture.RunState != RunState.NotRunnable)
                 CheckTestFixtureIsValid(fixture);
-
+#if CORECLR
+            fixture.ApplyAttributesToTest(type.GetTypeInfo());
+#else
             fixture.ApplyAttributesToTest(type);
-
+#endif
             AddTestCases(type);
 
             return this.fixture;
         }
 
-        #endregion
+#endregion
 
-        #region Helper Methods
+#region Helper Methods
 
         /// <summary>
         /// Method to add test cases to the newly constructed fixture.
@@ -218,8 +225,11 @@ namespace NUnit.Framework.Internal.Builders
         private void CheckTestFixtureIsValid(TestFixture fixture)
         {
             Type fixtureType = fixture.FixtureType;
-
+#if CORECLR
+            if (fixtureType.GetTypeInfo().ContainsGenericParameters)
+#else
             if (fixtureType.ContainsGenericParameters)
+#endif
             {
                 fixture.RunState = RunState.NotRunnable;
                 fixture.Properties.Set(PropertyNames.SkipReason, NO_TYPE_ARGS_MSG);
@@ -256,7 +266,11 @@ namespace NUnit.Framework.Internal.Builders
 
         private static bool IsStaticClass(Type type)
         {
+#if CORECLR
+            return type.GetTypeInfo().IsAbstract && type.GetTypeInfo().IsSealed;
+#else
             return type.IsAbstract && type.IsSealed;
+#endif
         }
 
         #endregion

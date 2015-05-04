@@ -52,9 +52,14 @@ namespace NUnit.Framework.Internal.Builders
 
             if (!method.IsDefined(typeof(TheoryAttribute), true))
                 return false;
-
+#if CORECLR
+            if (parameterType == typeof (bool) || parameterType.GetTypeInfo().IsEnum)
+#else
             if (parameterType == typeof(bool) || parameterType.IsEnum)
+#endif
+            {
                 return true;
+            }
 
             foreach (MemberInfo member in fixtureType.GetMembers(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance))
             {
@@ -137,7 +142,11 @@ namespace NUnit.Framework.Internal.Builders
                     datapoints.Add(true);
                     datapoints.Add(false);
                 }
+#if CORECLR
+                else if (parameterType.GetTypeInfo().IsEnum)
+#else
                 else if (parameterType.IsEnum)
+#endif
                 {
                     foreach (object o in TypeHelper.GetEnumValues(parameterType))
                         datapoints.Add(o);
@@ -173,13 +182,18 @@ namespace NUnit.Framework.Internal.Builders
 
             if (type.IsArray)
                 return type.GetElementType();
-
+#if CORECLR
+            if (type.GetTypeInfo().IsGenericType && type.Name == "IEnumerable`1")
+#else
             if (type.IsGenericType && type.Name == "IEnumerable`1")
+#endif
+            {
                 return type.GetGenericArguments()[0];
+            }
 
             return null;
         }
 
-        #endregion
+#endregion
     }
 }

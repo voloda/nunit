@@ -24,7 +24,6 @@
 using System;
 using System.Reflection;
 using System.Collections.Generic;
-using NUnit.Framework.Interfaces;
 
 namespace NUnit.Framework.Internal.Execution
 {
@@ -53,7 +52,11 @@ namespace NUnit.Framework.Internal.Execution
             // Prefix with any IApplyToContext items from attributes
             if (suite.FixtureType != null)
             {
+#if CORECLR
+                IApplyToContext[] changes = (IApplyToContext[])suite.FixtureType.GetTypeInfo().GetCustomAttributes(typeof(IApplyToContext), true);
+#else
                 IApplyToContext[] changes = (IApplyToContext[])suite.FixtureType.GetCustomAttributes(typeof(IApplyToContext), true);
+#endif
                 if (changes.Length > 0)
                     command = new ApplyChangesToContextCommand(command, changes);
             }
@@ -131,8 +134,11 @@ namespace NUnit.Framework.Internal.Execution
                 var node = BuildNode(fixtureType, setUpMethods, tearDownMethods);
                 if (node.HasMethods)
                     list.Add(node);
-
+#if CORECLR
+                fixtureType = fixtureType.GetTypeInfo().BaseType;
+#else
                 fixtureType = fixtureType.BaseType;
+#endif
             }
 
             return list;
