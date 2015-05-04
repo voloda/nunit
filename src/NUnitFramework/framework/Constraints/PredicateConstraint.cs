@@ -22,7 +22,7 @@
 // ***********************************************************************
 
 using System;
-using System.Collections.Generic;
+using System.Reflection;
 
 namespace NUnit.Framework.Constraints
 {
@@ -51,7 +51,9 @@ namespace NUnit.Framework.Constraints
             {
 #if CORECLR
                 // TODO: how to extract?
-                return "value matching a predicate";
+                return predicate.GetMethodInfo().Name.StartsWith("<")
+                    ? "value matching lambda expression"
+                    : "value matching " + predicate.GetMethodInfo().Name;
 #else
                 return predicate.Method.Name.StartsWith("<")
                     ? "value matching lambda expression"
