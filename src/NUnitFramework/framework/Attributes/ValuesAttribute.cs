@@ -99,8 +99,11 @@ namespace NUnit.Framework
         public IEnumerable GetData(ParameterInfo parameter)
         {
             Type targetType = parameter.ParameterType;
-
+#if CORECLR
+            if (targetType.GetTypeInfo().IsEnum && data.Length == 0)
+#else
             if (targetType.IsEnum && data.Length == 0)
+#endif
             {
                 return TypeHelper.GetEnumValues(targetType);
             }

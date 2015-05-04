@@ -169,8 +169,12 @@ namespace NUnit.Framework.Internal.Builders
         private void AddTestCases(Type fixtureType)
         {
             // TODO: Check this logic added from Neil's build.
-            if (fixtureType.ContainsGenericParameters)
-            {
+#if CORECLR
+            if (fixtureType.GetTypeInfo().ContainsGenericParameters)
+#else
+                if (fixtureType.ContainsGenericParameters)
+#endif
+                {
                 fixture.RunState = RunState.NotRunnable;
                 fixture.Properties.Set(PropertyNames.SkipReason, NO_TYPE_ARGS_MSG);
                 return;

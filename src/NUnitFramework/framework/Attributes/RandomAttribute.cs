@@ -100,7 +100,11 @@ namespace NUnit.Framework
             {
                 default:
                 case SampleType.Raw:
+#if CORECLR
+                    if (parameter.ParameterType.GetTypeInfo().IsEnum)
+#else
                     if (parameter.ParameterType.IsEnum)
+#endif
                         values = r.GetEnums(count, parameter.ParameterType);
                     else
                     values = r.GetDoubles(count);

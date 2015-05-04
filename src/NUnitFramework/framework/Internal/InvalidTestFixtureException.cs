@@ -24,7 +24,7 @@
 namespace NUnit.Framework.Internal
 {
     using System;
-#if !NETCF
+#if !NETCF && !CORECLR
     using System.Runtime.Serialization;
 #endif
 

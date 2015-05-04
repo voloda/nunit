@@ -66,7 +66,11 @@ namespace NUnit.Framework
 
         private bool IsValidFixtureType(Type fixtureType, ref string reason)
         {
+#if CORECLR
+            if (fixtureType.GetTypeInfo().IsAbstract)
+#else
             if (fixtureType.IsAbstract)
+#endif
             {
                 reason = string.Format("{0} is an abstract class", fixtureType.FullName);
                 return false;
@@ -96,6 +100,6 @@ namespace NUnit.Framework
             return true;
         }
 
-        #endregion
+#endregion
     }
 }

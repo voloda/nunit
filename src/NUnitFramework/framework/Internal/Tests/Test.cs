@@ -144,9 +144,14 @@ namespace NUnit.Framework.Internal
 
                 if (type == null)
                     return null;
-
+#if CORECLR
+                if (type.GetTypeInfo().IsGenericType)
+#else
                 if (type.IsGenericType)
+#endif
+                {
                     type = type.GetGenericTypeDefinition();
+                }
 
                 return type.FullName;
             }
@@ -239,9 +244,9 @@ namespace NUnit.Framework.Internal
         /// </summary>
         public virtual object Fixture { get; set; }
 
-        #endregion
+#endregion
 
-        #region Other Public Properties
+#region Other Public Properties
 
         /// <summary>
         /// Static prefix used for ids in this AppDomain.
@@ -255,17 +260,17 @@ namespace NUnit.Framework.Internal
         /// <value></value>
         public int Seed { get; set; }
 
-        #endregion
+#endregion
 
-        #region Internal Properties
+#region Internal Properties
 
         internal bool RequiresThread { get; set; }
 
         internal bool IsAsynchronous { get; set; }
 
-        #endregion
+#endregion
 
-        #region Other Public Methods
+#region Other Public Methods
 
         /// <summary>
         /// Creates a TestResult for this test.
@@ -310,14 +315,14 @@ namespace NUnit.Framework.Internal
         /// <param name="provider">An object deriving from MemberInfo</param>
         public void ApplyAttributesToTest(Assembly provider)
         {
-            foreach (IApplyToTest iApply in provider.GetCustomAttributes(typeof(IApplyToTest), true))
+            foreach (IApplyToTest iApply in provider.GetCustomAttributes(typeof(IApplyToTest)))
                 iApply.ApplyToTest(this);
         }
 #endif
 
-        #endregion
+#endregion
 
-        #region Protected Methods
+#region Protected Methods
 
         /// <summary>
         /// Add standard attributes and members to a test node.
@@ -339,9 +344,9 @@ namespace NUnit.Framework.Internal
                 Properties.AddToXml(thisNode, recursive);
         }
 
-        #endregion
+#endregion
 
-        #region IXmlNodeBuilder Members
+#region IXmlNodeBuilder Members
 
         /// <summary>
         /// Returns the Xml representation of the test
@@ -366,9 +371,9 @@ namespace NUnit.Framework.Internal
         /// <returns></returns>
         public abstract XmlNode AddToXml(XmlNode parentNode, bool recursive);
 
-        #endregion
+#endregion
 
-        #region IComparable Members
+#region IComparable Members
 
         /// <summary>
         /// Compares this test to another test for sorting purposes
@@ -385,6 +390,6 @@ namespace NUnit.Framework.Internal
             return this.FullName.CompareTo(other.FullName);
         }
 
-        #endregion
+#endregion
     }
 }

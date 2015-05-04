@@ -134,7 +134,7 @@ namespace NUnit.Common
 #endif
 
             // Assume it's the string representation of an AssemblyName
-            return Assembly.Load(nameOrPath);
+            return Assembly.Load(new AssemblyName(nameOrPath));
         }
 
         #endregion

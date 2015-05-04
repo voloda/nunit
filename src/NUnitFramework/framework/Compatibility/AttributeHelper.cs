@@ -61,7 +61,7 @@ namespace NUnit.Framework.Compatibility
             var assembly = actual as Assembly;
             if (assembly != null)
             {
-                return (Attribute[])assembly.GetCustomAttributes(attributeType, inherit);
+                return (Attribute[])assembly.GetCustomAttributes(attributeType);
             }
 #endif
             throw new ArgumentException(string.Format("Actual value {0} does not implement ICustomAttributeProvider", actual), "actual");

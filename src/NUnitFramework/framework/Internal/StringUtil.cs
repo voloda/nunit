@@ -21,6 +21,8 @@ namespace NUnit.Framework.Internal
             CompareOptions options = ignoreCase ? CompareOptions.IgnoreCase : CompareOptions.None;
 #if NETCF
             return string.Compare(strA, strB, ignoreCase);
+#elif CORECLR
+            return string.Compare(strA, strB, ignoreCase ? StringComparison.CurrentCultureIgnoreCase : StringComparison.CurrentCulture);
 #else
             return string.Compare(strA, strB, CultureInfo.CurrentCulture, options);
 #endif

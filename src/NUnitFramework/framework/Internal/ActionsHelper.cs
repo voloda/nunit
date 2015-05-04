@@ -22,7 +22,6 @@
 // ***********************************************************************
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 
@@ -62,7 +61,7 @@ namespace NUnit.Framework.Internal
             if (attributeProvider == null)
                 return new ITestAction[0];
 
-            var actions = new List<ITestAction>((ITestAction[])attributeProvider.GetCustomAttributes(typeof(ITestAction), false));
+            var actions = new List<ITestAction>((ITestAction[])attributeProvider.GetCustomAttributes(typeof(ITestAction)));
             actions.Sort(SortByTargetDescending);
 
             return actions.ToArray();
@@ -91,15 +90,27 @@ namespace NUnit.Framework.Internal
                 return new ITestAction[0];
 
             var actions = new List<ITestAction>();
-
+#if CORECLR
+            actions.AddRange(GetActionsFromTypesAttributes(type.GetTypeInfo().BaseType));
+#else
             actions.AddRange(GetActionsFromTypesAttributes(type.BaseType));
-
+#endif
             Type[] declaredInterfaces = GetDeclaredInterfaces(type);
 
-            foreach(Type interfaceType in declaredInterfaces)
-                actions.AddRange(GetActionsFromAttributeProvider(interfaceType));
+            foreach (Type interfaceType in declaredInterfaces)
+#if CORECLR
+            {
+                actions.AddRange(GetActionsFromAttributeProvider(interfaceType.GetTypeInfo()));
+            }
+
+            actions.AddRange(GetActionsFromAttributeProvider(type.GetTypeInfo()));
+#else
+            {
+                actions.AddRange(GetActionsFromAttributeProvider(interfaceType.GetTypeInfo()));
+            }
 
             actions.AddRange(GetActionsFromAttributeProvider(type));
+#endif
 
             return actions.ToArray();
         }
@@ -107,11 +118,20 @@ namespace NUnit.Framework.Internal
         private static Type[] GetDeclaredInterfaces(Type type)
         {
             List<Type> interfaces = new List<Type>(type.GetInterfaces());
-
-            if (type.BaseType == typeof(object))
+#if CORECLR
+            if (type.GetTypeInfo().BaseType == typeof (object))
+#else
+            if (type.GetTypeInfo().BaseType == typeof(object))
+#endif
+            {
                 return interfaces.ToArray();
+            }
 
+#if CORECLR
+            List<Type> baseInterfaces = new List<Type>(type.GetTypeInfo().BaseType.GetInterfaces());
+#else
             List<Type> baseInterfaces = new List<Type>(type.BaseType.GetInterfaces());
+#endif
             List<Type> declaredInterfaces = new List<Type>();
 
             foreach (Type interfaceType in interfaces)
