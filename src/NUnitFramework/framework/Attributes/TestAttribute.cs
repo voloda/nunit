@@ -124,7 +124,7 @@ namespace NUnit.Framework
         /// <param name="method">The MethodInfo for which a test is to be constructed.</param>
         /// <param name="suite">The suite to which the test will be added.</param>
         /// <returns>A TestMethod</returns>
-        public TestMethod BuildFrom(MethodInfo method, Test suite)
+        public TestMethod BuildFrom(MethodInfo method, Test suite, Type reflectedType)
         {
             ParameterSet parms = null;
 
@@ -134,7 +134,7 @@ namespace NUnit.Framework
                 parms.ExpectedResult = this.ExpectedResult;
             }
 
-            return _builder.BuildTestMethod(method, suite, parms);
+            return _builder.BuildTestMethod(method, suite, parms, reflectedType);
         }
         
         #endregion

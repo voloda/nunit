@@ -23,8 +23,8 @@
 
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Reflection;
+using NUnit.Framework.Interfaces;
 using NUnit.Framework.Internal;
 
 namespace NUnit.Framework
@@ -34,7 +34,7 @@ namespace NUnit.Framework
     /// provide data for one parameter of a test method.
     /// </summary>
     [AttributeUsage(AttributeTargets.Parameter, AllowMultiple = true, Inherited = false)]
-    public class ValueSourceAttribute : DataAttribute, Interfaces.IParameterDataSource
+    public class ValueSourceAttribute : DataAttribute, IParameterDataSource
     {
         private readonly string sourceName;
         private readonly Type sourceType;
@@ -87,20 +87,20 @@ namespace NUnit.Framework
         /// <returns>
         /// An enumeration containing individual data items
         /// </returns>
-        public IEnumerable GetData(ParameterInfo parameter)
+        public IEnumerable GetData(ParameterInfo parameter, Type reflectedType)
         {
-            return GetDataSource(parameter);
+            return GetDataSource(parameter, reflectedType);
         }
 
         #endregion
 
         #region Helper Methods
 
-        private IEnumerable GetDataSource(ParameterInfo parameter)
+        private IEnumerable GetDataSource(ParameterInfo parameter, Type reflectedType)
         {
             Type sourceType = this.sourceType;
             if (sourceType == null)
-                sourceType = parameter.Member.ReflectedType;
+                sourceType = reflectedType;
 
             // TODO: Test this
             if (sourceName == null)

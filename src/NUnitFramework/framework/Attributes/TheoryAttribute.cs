@@ -67,7 +67,7 @@ namespace NUnit.Framework
         /// <param name="method">The MethodInfo for which tests are to be constructed.</param>
         /// <param name="suite">The suite to which the tests will be added.</param>
         /// <returns>One or more TestMethods</returns>
-        public IEnumerable<TestMethod> BuildFrom(MethodInfo method, Internal.Test suite)
+        public IEnumerable<TestMethod> BuildFrom(MethodInfo method, Internal.Test suite, Type reflectedType)
         {
             ParameterInfo[] parameters = method.GetParameters();
 
@@ -77,10 +77,10 @@ namespace NUnit.Framework
             {
                 IEnumerable[] sources = new IEnumerable[parameters.Length];
                 for (int i = 0; i < parameters.Length; i++)
-                    sources[i] = _dataProvider.GetDataFor(parameters[i]);
+                    sources[i] = _dataProvider.GetDataFor(parameters[i], reflectedType);
 
                 foreach (var parms in new CombinatorialStrategy().GetTestCases(sources))
-                    tests.Add(_builder.BuildTestMethod(method, suite, (ParameterSet)parms));
+                    tests.Add(_builder.BuildTestMethod(method, suite, (ParameterSet)parms, reflectedType));
             }
 
             return tests;

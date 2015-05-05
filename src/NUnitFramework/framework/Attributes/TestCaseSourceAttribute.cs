@@ -90,16 +90,18 @@ namespace NUnit.Framework
         public string Category { get; set; }
 
         #region ITestCaseSource Members
+
         /// <summary>
         /// Returns a set of ITestCaseDataItems for use as arguments
         /// to a parameterized test method.
         /// </summary>
         /// <param name="method">The method for which data is needed.</param>
+        /// <param name="reflectedType"></param>
         /// <returns></returns>
-        public IEnumerable<ITestCaseData> GetTestCasesFor(MethodInfo method)
+        public IEnumerable<ITestCaseData> GetTestCasesFor(MethodInfo method, Type reflectedType)
         {
             List<ITestCaseData> data = new List<ITestCaseData>();
-            IEnumerable source = GetTestCaseSource(method);
+            IEnumerable source = GetTestCaseSource(method, reflectedType);
 
             if (source != null)
             {
@@ -190,11 +192,11 @@ namespace NUnit.Framework
             return data;
         }
 
-        private IEnumerable GetTestCaseSource(MethodInfo method)
+        private IEnumerable GetTestCaseSource(MethodInfo method, Type reflectedType)
         {
             Type sourceType = this.SourceType;
             if (sourceType == null)
-                sourceType = method.ReflectedType;
+                sourceType = reflectedType;
 
             if (SourceName == null)
                 return Reflect.Construct(sourceType, _sourceConstructorParameters) as IEnumerable;
@@ -232,12 +234,12 @@ namespace NUnit.Framework
         /// <param name="method">The MethodInfo for which tests are to be constructed.</param>
         /// <param name="suite">The suite to which the tests will be added.</param>
         /// <returns>One or more TestMethods</returns>
-        public IEnumerable<TestMethod> BuildFrom(MethodInfo method, Test suite)
+        public IEnumerable<TestMethod> BuildFrom(MethodInfo method, Test suite, Type reflectedType)
         {
             List<TestMethod> tests = new List<TestMethod>();
 
-            foreach (ParameterSet parms in GetTestCasesFor(method))
-                tests.Add(_builder.BuildTestMethod(method, suite, parms));
+            foreach (ParameterSet parms in GetTestCasesFor(method, reflectedType))
+                tests.Add(_builder.BuildTestMethod(method, suite, parms, reflectedType));
 
             return tests;
         }

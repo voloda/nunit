@@ -21,6 +21,7 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // ***********************************************************************
 
+using System;
 using System.Collections;
 using System.Reflection;
 
@@ -38,7 +39,7 @@ namespace NUnit.Framework.Interfaces
         /// <param name="parameter">A ParameterInfo representing one
         /// argument to a parameterized test</param>
         /// <returns>True if any data is available, otherwise false.</returns>
-        bool HasDataFor(ParameterInfo parameter);
+        bool HasDataFor(ParameterInfo parameter, Type reflectedType);
 
         /// <summary>
         /// Return an IEnumerable providing data for use with the
@@ -47,6 +48,6 @@ namespace NUnit.Framework.Interfaces
         /// <param name="parameter">A ParameterInfo representing one
         /// argument to a parameterized test</param>
         /// <returns>An IEnumerable providing the required data</returns>
-        IEnumerable GetDataFor(ParameterInfo parameter);
+        IEnumerable GetDataFor(ParameterInfo parameter, Type reflectedType);
     }
 }

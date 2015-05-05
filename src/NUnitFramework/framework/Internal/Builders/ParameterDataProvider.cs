@@ -45,7 +45,7 @@ namespace NUnit.Framework.Internal.Builders
         /// <returns>
         /// True if any data is available, otherwise false.
         /// </returns>
-        public bool HasDataFor(ParameterInfo parameter)
+        public bool HasDataFor(ParameterInfo parameter, Type reflectedType)
         {
             return parameter.IsDefined(typeof(IParameterDataSource), false);
         }
@@ -59,13 +59,13 @@ namespace NUnit.Framework.Internal.Builders
         /// <returns>
         /// An IEnumerable providing the required data
         /// </returns>
-        public IEnumerable GetDataFor(ParameterInfo parameter)
+        public IEnumerable GetDataFor(ParameterInfo parameter, Type reflectedType)
         {
             var data = new List<object>();
 
             foreach (IParameterDataSource source in parameter.GetCustomAttributes(typeof(IParameterDataSource), false))
             {
-                foreach (object item in source.GetData(parameter))
+                foreach (object item in source.GetData(parameter, reflectedType))
                 data.Add(item);
             }
 

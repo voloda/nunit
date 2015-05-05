@@ -46,14 +46,14 @@ namespace NUnit.Framework.Internal.Builders
         /// <param name="parentSuite">The suite or fixture to which the new test will be added</param>
         /// <param name="parms">The ParameterSet to be used, or null</param>
         /// <returns></returns>
-        public TestMethod BuildTestMethod(MethodInfo method, Test parentSuite, ParameterSet parms)
+        public TestMethod BuildTestMethod(MethodInfo method, Test parentSuite, ParameterSet parms, Type reflectedType)
         {
-            var testMethod = new TestMethod(method, parentSuite)
+            var testMethod = new TestMethod(method, parentSuite, reflectedType)
             {
                 Seed = randomizer.Next()
             };
 
-            string prefix = method.ReflectedType.FullName;
+            string prefix = reflectedType.FullName;
 
             // Needed to give proper fullname to test in a parameterized fixture.
             // Without this, the arguments to the fixture are not included.

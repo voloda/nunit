@@ -98,8 +98,8 @@ namespace NUnit.Framework.Internal
         /// Construct a test from a MethodInfo
         /// </summary>
         /// <param name="method"></param>
-        protected Test(MethodInfo method)
-            : this(method.ReflectedType)
+        protected Test(MethodInfo method, Type reflectedType)
+            : this(reflectedType)
         {
             this.Name = method.Name;
             this.FullName += "." + this.Name;

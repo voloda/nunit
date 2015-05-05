@@ -21,11 +21,10 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // ***********************************************************************
 
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using NUnit.Framework.Interfaces;
-using NUnit.Framework.Internal.Commands;
-using NUnit.Framework.Internal.Execution;
 
 namespace NUnit.Framework.Internal
 {
@@ -49,15 +48,15 @@ namespace NUnit.Framework.Internal
         /// Initializes a new instance of the <see cref="TestMethod"/> class.
         /// </summary>
         /// <param name="method">The method to be used as a test.</param>
-        public TestMethod(MethodInfo method) : this(method, null) { }
+        public TestMethod(MethodInfo method, Type reflectedType) : this(method, null, reflectedType) { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TestMethod"/> class.
         /// </summary>
         /// <param name="method">The method to be used as a test.</param>
         /// <param name="parentSuite">The suite or fixture to which the new test will be added</param>
-        public TestMethod(MethodInfo method, Test parentSuite) 
-            : base( method ) 
+        public TestMethod(MethodInfo method, Test parentSuite, Type reflectedType) 
+            : base( method, reflectedType ) 
         {
             // Disambiguate call to base class methods
             // TODO: This should not be here - it's a presentation issue
@@ -66,7 +65,7 @@ namespace NUnit.Framework.Internal
 
             // Needed to give proper fullname to test in a parameterized fixture.
             // Without this, the arguments to the fixture are not included.
-            string prefix = method.ReflectedType.FullName;
+            string prefix = reflectedType.FullName;
             if (parentSuite != null)
             {
                 prefix = parentSuite.FullName;
